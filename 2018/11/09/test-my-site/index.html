@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="设计模式,">
 
 
 
@@ -83,17 +83,20 @@
 
 
 
-<meta name="description" content="用来记录平时学习的博客">
+<meta name="description" content="策略模式策略模式定义了算法家族，分别封装起来，让它们之间可以相互替换，此模式让算法的变换，不会影响到使用算法的客户。这个模式涉及到三个角色： 抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类来实现。此角色给出所有具体策略类的接口。具体策略(ConcreteStrategy)角色：包装了相关算法和行为。环境(Context)角色： 维护了对一个Strategy对象的引用。代">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test_my_site">
+<meta property="og:title" content="策略模式">
 <meta property="og:url" content="http://yoursite.com/2018/11/09/test-my-site/index.html">
 <meta property="og:site_name" content="王恒">
-<meta property="og:description" content="用来记录平时学习的博客">
+<meta property="og:description" content="策略模式策略模式定义了算法家族，分别封装起来，让它们之间可以相互替换，此模式让算法的变换，不会影响到使用算法的客户。这个模式涉及到三个角色： 抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类来实现。此角色给出所有具体策略类的接口。具体策略(ConcreteStrategy)角色：包装了相关算法和行为。环境(Context)角色： 维护了对一个Strategy对象的引用。代">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-09T05:56:26.893Z">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/b220262ce9a61b6959ab6170754fa3b2/xmlnote/6A1C092F26224284BAC59253633BC101/1478">
+<meta property="og:updated_time" content="2018-11-16T14:39:16.031Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test_my_site">
-<meta name="twitter:description" content="用来记录平时学习的博客">
+<meta name="twitter:title" content="策略模式">
+<meta name="twitter:description" content="策略模式策略模式定义了算法家族，分别封装起来，让它们之间可以相互替换，此模式让算法的变换，不会影响到使用算法的客户。这个模式涉及到三个角色： 抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类来实现。此角色给出所有具体策略类的接口。具体策略(ConcreteStrategy)角色：包装了相关算法和行为。环境(Context)角色： 维护了对一个Strategy对象的引用。代">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/b220262ce9a61b6959ab6170754fa3b2/xmlnote/6A1C092F26224284BAC59253633BC101/1478">
 
 
 
@@ -129,7 +132,7 @@
 
 
 
-  <title>test_my_site | 王恒</title>
+  <title>策略模式 | 王恒</title>
   
 
 
@@ -273,7 +276,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test_my_site</h1>
+          <h1 class="post-title" itemprop="name headline">策略模式</h1>
         
 
         <div class="post-meta">
@@ -303,7 +306,7 @@
 
           
           
-             <span id="/2018/11/09/test-my-site/" class="leancloud_visitors" data-flag-title="test_my_site">
+             <span id="/2018/11/09/test-my-site/" class="leancloud_visitors" data-flag-title="策略模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -334,7 +337,35 @@
       
 
       
-        
+        <h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><p>策略模式定义了算法家族，分别封装起来，让它们之<br>间可以相互替换，此模式让算法的变换，不会影响到使用算法的客户。<br><img src="https://note.youdao.com/yws/public/resource/b220262ce9a61b6959ab6170754fa3b2/xmlnote/6A1C092F26224284BAC59253633BC101/1478" alt="image"><br>这个模式涉及到三个角色：</p>
+<h5 id="抽象策略-Strategy-角色：这是一个抽象角色，通常由一个接口或抽象类来实现。此角色给出所有具体策略类的接口。"><a href="#抽象策略-Strategy-角色：这是一个抽象角色，通常由一个接口或抽象类来实现。此角色给出所有具体策略类的接口。" class="headerlink" title="抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类来实现。此角色给出所有具体策略类的接口。"></a>抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类来实现。此角色给出所有具体策略类的接口。</h5><h5 id="具体策略-ConcreteStrategy-角色：包装了相关算法和行为。"><a href="#具体策略-ConcreteStrategy-角色：包装了相关算法和行为。" class="headerlink" title="具体策略(ConcreteStrategy)角色：包装了相关算法和行为。"></a>具体策略(ConcreteStrategy)角色：包装了相关算法和行为。</h5><h5 id="环境-Context-角色：-维护了对一个Strategy对象的引用。"><a href="#环境-Context-角色：-维护了对一个Strategy对象的引用。" class="headerlink" title="环境(Context)角色： 维护了对一个Strategy对象的引用。"></a>环境(Context)角色： 维护了对一个Strategy对象的引用。</h5><p>代码如下：</p>
+<h6 id="抽象算法类"><a href="#抽象算法类" class="headerlink" title="抽象算法类"></a>抽象算法类</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 定义策略接口</span><br><span class="line"> * @author xiaowang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public interface Strategy &#123;</span><br><span class="line">	/**</span><br><span class="line">	 * 算法方法</span><br><span class="line">	 */</span><br><span class="line">	void AlgorlthmInterface();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="具体策略类"><a href="#具体策略类" class="headerlink" title="具体策略类"></a>具体策略类</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 具体算法A</span><br><span class="line"> * @author xiaowang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class ConcreateStrategyA implements Strategy &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void AlgorlthmInterface() &#123;</span><br><span class="line">		System.out.println(&quot;算法A&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 具体算法B</span><br><span class="line"> * @author xiaowang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class ConcreateStrategyB implements Strategy &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void AlgorlthmInterface() &#123;</span><br><span class="line">		System.out.println(&quot;算法B&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 具体算法C</span><br><span class="line"> * @author xiaowang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class ConcreateStrategyC implements Strategy &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void AlgorlthmInterface() &#123;</span><br><span class="line">		System.out.println(&quot;算法C&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="上下文"><a href="#上下文" class="headerlink" title="上下文"></a>上下文</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * strategy上下文</span><br><span class="line"> * @author xiaowang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class Context &#123;</span><br><span class="line">	private Strategy strategy;</span><br><span class="line">	public Context(Strategy strategy) &#123;</span><br><span class="line">		this.strategy = strategy;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//上下文接口</span><br><span class="line">	public void ContextInterface() &#123;</span><br><span class="line">		strategy.AlgorlthmInterface();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>假设需要一个商场收银软件，根据客户所购买的商品的单价和数量进行收费。但是，商场会不定期举行活动，例如打九折、八折、满300返100、满700返200等<br>根据描述，折扣是根据以下几个算法中的一个进行的：</p>
+<p>算法一：没有折扣。</p>
+<p>算法二：打九折。</p>
+<p>算法三：打八折。</p>
+<h6 id="折扣接口类"><a href="#折扣接口类" class="headerlink" title="折扣接口类"></a>折扣接口类</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface MemberStrategy &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 计算图书的价格</span><br><span class="line">     * @param booksPrice    图书的原价</span><br><span class="line">     * @return    计算出打折后的价格</span><br><span class="line">     */</span><br><span class="line">    public double calcPrice(double booksPrice);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="无折扣类"><a href="#无折扣类" class="headerlink" title="无折扣类"></a>无折扣类</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class PrimaryMemberStrategy implements MemberStrategy &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public double calcPrice(double booksPrice) &#123;</span><br><span class="line">        return booksPrice;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="九折类"><a href="#九折类" class="headerlink" title="九折类"></a>九折类</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class IntermediateMemberStrategy implements MemberStrategy &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public double calcPrice(double booksPrice) &#123;</span><br><span class="line">        return booksPrice * 0.9;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="八折类"><a href="#八折类" class="headerlink" title="八折类"></a>八折类</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class AdvancedMemberStrategy implements MemberStrategy &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public double calcPrice(double booksPrice) &#123;</span><br><span class="line">        return booksPrice * 0.8;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="满减活动类"><a href="#满减活动类" class="headerlink" title="满减活动类"></a>满减活动类</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class ReturnStrategy &#123;</span><br><span class="line">	private double moneyCondition = 0.0d;</span><br><span class="line">	private double moneyReturn = 0.0d;</span><br><span class="line">	public ReturnStrategy(double moneyCondition,double moneyReturn) &#123;</span><br><span class="line">		this.moneyCondition = moneyCondition;</span><br><span class="line">		this.moneyReturn = moneyReturn;</span><br><span class="line">	&#125;</span><br><span class="line">	public double calcPrice(double booksPrice) &#123;</span><br><span class="line">		double result = booksPrice;</span><br><span class="line">		result = booksPrice - Math.floor(booksPrice/moneyCondition)*moneyReturn;</span><br><span class="line">		return	result;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="价格类上下文"><a href="#价格类上下文" class="headerlink" title="价格类上下文"></a>价格类上下文</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class Price &#123;</span><br><span class="line">    //持有一个具体的策略对象</span><br><span class="line">    private MemberStrategy strategy;</span><br><span class="line">    /**</span><br><span class="line">     * 构造函数，传入一个具体的策略对象</span><br><span class="line">     * @param strategy    具体的策略对象</span><br><span class="line">     */</span><br><span class="line">    public Price(MemberStrategy strategy)&#123;</span><br><span class="line">        this.strategy = strategy;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * 计算图书的价格</span><br><span class="line">     * @param booksPrice    图书的原价</span><br><span class="line">     * @return    计算出打折后的价格</span><br><span class="line">     */</span><br><span class="line">    public double quote(double booksPrice)&#123;</span><br><span class="line">        return this.strategy.calcPrice(booksPrice);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 从上面的示例可以看出，策略模式仅仅封装算法，提供新的算法插入到已有系统中，以及老算法从系统中“退休”的方法，策略模式并不决定在何时使用何种算法。在什么情况下使用什么算法是由客户端决定的。 <strong>可以将策略模式与简单工厂模式结合，将选择具体的职责交给context来实现(更好的办法是利用反射来实现</strong>)</p>
+<h2 id="认识策略模式"><a href="#认识策略模式" class="headerlink" title="认识策略模式"></a>认识策略模式</h2><h4 id="策略模式的重心"><a href="#策略模式的重心" class="headerlink" title="策略模式的重心"></a>策略模式的重心</h4><p>　策略模式的重心不是如何实现算法，而是如何组织、调用这些算法，从而让程序结构更灵活，具有更好的维护性和扩展性。</p>
+<h4 id="算法的平等性"><a href="#算法的平等性" class="headerlink" title="算法的平等性"></a>算法的平等性</h4><p>策略模式一个很大的特点就是各个策略算法的平等性。对于一系列具体的策略算法，大家的地位是完全一样的，正因为这个平等性，才能实现算法之间可以相互替换。所有的策略算法在实现上也是相互独立的，相互之间是没有依赖的。</p>
+<p>　　所以可以这样描述这一系列策略算法：策略算法是相同行为的不同实现。</p>
+<h4 id="运行时策略的唯一性"><a href="#运行时策略的唯一性" class="headerlink" title="运行时策略的唯一性"></a>运行时策略的唯一性</h4><p>运行期间，策略模式在每一个时刻只能使用一个具体的策略实现对象，虽然可以动态地在不同的策略实现中切换，但是同时只能使用一个。</p>
+<h4 id="公有的行为"><a href="#公有的行为" class="headerlink" title="公有的行为"></a>公有的行为</h4><p>　　经常见到的是，所有的具体策略类都有一些公有的行为。这时候，就应当把这些公有的行为放到共同的抽象策略角色Strategy类里面。当然这时候抽象策略角色必须要用Java抽象类实现，而不能使用接口。</p>
+<p>　　这其实也是典型的将代码向继承等级结构的上方集中的标准做法。</p>
+<h2 id="策略模式的优点"><a href="#策略模式的优点" class="headerlink" title="　　策略模式的优点"></a>　　策略模式的优点</h2><p>（1）策略模式提供了管理相关的算法族的办法。策略类的等级结构定义了一个算法或行为族。恰当使用继承可以把公共的代码移到父类里面，从而避免代码重复。</p>
+<p>　　（2）使用策略模式可以避免使用多重条件(if-else)语句。多重条件语句不易维护，它把采取哪一种算法或采取哪一种行为的逻辑与算法或行为的逻辑混合在一起，统统列在一个多重条件语句里面，比使用继承的办法还要原始和落后。</p>
+<h2 id="策略模式的缺点"><a href="#策略模式的缺点" class="headerlink" title="　　策略模式的缺点"></a>　　策略模式的缺点</h2><p>（1）客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别，以便适时选择恰当的算法类。换言之，策略模式只适用于客户端知道算法或行为的情况。</p>
+<p>　　（2）由于策略模式把每个具体的策略实现都单独封装成为类，如果备选的策略很多的话，那么对象的数目就会很可观。</p>
+
       
     </div>
     
@@ -363,6 +394,12 @@
 	</div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          
+        </div>
       
 
       
@@ -459,8 +496,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 	
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -511,6 +557,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#策略模式"><span class="nav-number">1.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#抽象策略-Strategy-角色：这是一个抽象角色，通常由一个接口或抽象类来实现。此角色给出所有具体策略类的接口。"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类来实现。此角色给出所有具体策略类的接口。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#具体策略-ConcreteStrategy-角色：包装了相关算法和行为。"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">具体策略(ConcreteStrategy)角色：包装了相关算法和行为。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#环境-Context-角色：-维护了对一个Strategy对象的引用。"><span class="nav-number">1.0.0.0.3.</span> <span class="nav-text">环境(Context)角色： 维护了对一个Strategy对象的引用。</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#抽象算法类"><span class="nav-number">1.0.0.0.3.1.</span> <span class="nav-text">抽象算法类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#具体策略类"><span class="nav-number">1.0.0.0.3.2.</span> <span class="nav-text">具体策略类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#上下文"><span class="nav-number">1.0.0.0.3.3.</span> <span class="nav-text">上下文</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">1.1.</span> <span class="nav-text">使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#折扣接口类"><span class="nav-number">1.1.0.0.0.1.</span> <span class="nav-text">折扣接口类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#无折扣类"><span class="nav-number">1.1.0.0.0.2.</span> <span class="nav-text">无折扣类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#九折类"><span class="nav-number">1.1.0.0.0.3.</span> <span class="nav-text">九折类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#八折类"><span class="nav-number">1.1.0.0.0.4.</span> <span class="nav-text">八折类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#满减活动类"><span class="nav-number">1.1.0.0.0.5.</span> <span class="nav-text">满减活动类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#价格类上下文"><span class="nav-number">1.1.0.0.0.6.</span> <span class="nav-text">价格类上下文</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#认识策略模式"><span class="nav-number">1.2.</span> <span class="nav-text">认识策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#策略模式的重心"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">策略模式的重心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法的平等性"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">算法的平等性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时策略的唯一性"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">运行时策略的唯一性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#公有的行为"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">公有的行为</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式的优点"><span class="nav-number">1.3.</span> <span class="nav-text">　　策略模式的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式的缺点"><span class="nav-number">1.4.</span> <span class="nav-text">　　策略模式的缺点</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
