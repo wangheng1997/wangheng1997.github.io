@@ -256,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/原则/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/装饰模式/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wang">
@@ -275,7 +275,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/18/原则/" itemprop="url">设计模式六大原则</a></h1>
+                <a class="post-title-link" href="/2018/11/19/装饰模式/" itemprop="url">装饰模式</a></h1>
         
 
         <div class="post-meta">
@@ -287,8 +287,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-18T21:30:06+08:00">
-                2018-11-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-19T20:51:04+08:00">
+                2018-11-19
               </time>
             
 
@@ -305,7 +305,7 @@
 
           
           
-             <span id="/2018/11/18/原则/" class="leancloud_visitors" data-flag-title="设计模式六大原则">
+             <span id="/2018/11/19/装饰模式/" class="leancloud_visitors" data-flag-title="装饰模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -338,10 +338,341 @@
       
         
           
-            <h1 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h1><h1 id="开放-封闭原则"><a href="#开放-封闭原则" class="headerlink" title="开放-封闭原则"></a>开放-封闭原则</h1><h1 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h1><h1 id="里氏代换原则"><a href="#里氏代换原则" class="headerlink" title="里氏代换原则"></a>里氏代换原则</h1><h2 id="单一职责原则-1"><a href="#单一职责原则-1" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>就一个类而言，应该仅有一个引起它变化的原因。如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职责的变化可能会削弱或者抑制这个类完成其他职责的能力。这种耦合会导致脆弱的设计，当他变化时，设计会遭受到意想不到的破坏。做到单一职责原则，代码才是真正的易维护，易扩展，易复用，灵活多样。</p>
+            <h1 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h1><p>动态地给对象添加一些额外的职责，就增加功能来说，装饰模式比生成子类更灵活。</p>
+<h6 id="1-实现与被包装类的接口"><a href="#1-实现与被包装类的接口" class="headerlink" title="1.实现与被包装类的接口"></a>1.实现与被包装类的接口</h6><h6 id="2-定义一个与被包装类的引用"><a href="#2-定义一个与被包装类的引用" class="headerlink" title="2.定义一个与被包装类的引用"></a>2.定义一个与被包装类的引用</h6><h6 id="3-定义一个构造函数，把被构造对象传进来"><a href="#3-定义一个构造函数，把被构造对象传进来" class="headerlink" title="3.定义一个构造函数，把被构造对象传进来"></a>3.定义一个构造函数，把被构造对象传进来</h6><h6 id="4-对于不需要覆写的方法直接调用"><a href="#4-对于不需要覆写的方法直接调用" class="headerlink" title="4.对于不需要覆写的方法直接调用"></a>4.对于不需要覆写的方法直接调用</h6><h6 id="5-对于需要改写的方法，写自己的方法"><a href="#5-对于需要改写的方法，写自己的方法" class="headerlink" title="5.对于需要改写的方法，写自己的方法"></a>5.对于需要改写的方法，写自己的方法</h6><h3 id="装饰者模式的基本结构"><a href="#装饰者模式的基本结构" class="headerlink" title="装饰者模式的基本结构"></a>装饰者模式的基本结构</h3><p><img src="https://note.youdao.com/yws/public/resource/cbc180f214532c7c9d0a072fcf56f9a1/xmlnote/32561F2169A34262B74B8347B7E31B77/1798" alt="image"><br><strong>Component:</strong> 定义了对象接口，可以给这些对象动态地添加职责。</p>
+<p><strong>ConcreteComponent：</strong><br>定义了一个具体的对象，也就是我们要装饰的对象。</p>
+<p><strong>Decorator：</strong><br>继承自Component,装饰者需要共同实现的接口（也可以是抽象类），用来保证装饰者和被装饰者有共同的超类，并保证每一个装饰者都有一些必须具有的性质，如每一个装饰者都有一个实例变量（instance  variable）用来保存某个Component类型的类的引用。<br><strong>ConcreteDecorator：</strong><br>继承自Decorator，用来装饰Component类型的类（不能装饰抽象类），为其添加新的特性，可以在委托被装饰者的行为完成之前或之后的任意时候。</p>
+<h3 id="一个简单的实例"><a href="#一个简单的实例" class="headerlink" title="一个简单的实例"></a>一个简单的实例</h3><p>给人搭配不同的服饰系统</p>
+<p><strong>component：</strong> 人的抽象类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//component抽象类</span><br><span class="line"> abstract class Person &#123;</span><br><span class="line">	protected String name;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return	name;</span><br><span class="line">	&#125;</span><br><span class="line">	public abstract void show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>ConcreteComponent：</strong> 工人类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Worker extends Person &#123;</span><br><span class="line"></span><br><span class="line">	public Worker(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void show() &#123;</span><br><span class="line">		System.out.println(&quot;装扮的&quot;+getName());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Decorator：</strong> 装饰类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Finery extends Person &#123;</span><br><span class="line">	//</span><br><span class="line">	protected Person person;</span><br><span class="line">	public void decorate(Person person) &#123;</span><br><span class="line">		this.person = person;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void show() &#123;</span><br><span class="line">		if(person != null) &#123;</span><br><span class="line">			person.show();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>ConcreteDecorator：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//大T恤类</span><br><span class="line">public class Tshirts extends Finery &#123;</span><br><span class="line">	public void show() &#123;</span><br><span class="line">		System.out.println(&quot;大T恤&quot;);</span><br><span class="line">		person.show();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//垮裤类</span><br><span class="line">public class BigTrouser extends Finery &#123;</span><br><span class="line">	public void show() &#123;</span><br><span class="line">		System.out.println(&quot;垮裤&quot;);</span><br><span class="line">		person.show();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>客户端</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class ClientTest &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Person person = new Worker(&quot;张三&quot;);</span><br><span class="line">		Tshirts tshirts = new Tshirts();</span><br><span class="line">		BigTrouser bigTrouser = new BigTrouser();</span><br><span class="line">		tshirts.decorate(person);</span><br><span class="line">		bigTrouser.decorate(tshirts);</span><br><span class="line">		bigTrouser.show();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h5><p><img src="https://note.youdao.com/yws/public/resource/cbc180f214532c7c9d0a072fcf56f9a1/xmlnote/FCD7335B50A34821AB746D89B72C945A/1833" alt="image"></p>
+<p><strong>总结：</strong></p>
+<h6 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h6><ol>
+<li>装饰功能是为已有功能动态地添加更多功能的方式。</li>
+<li>简化原有的类，有效的把类的核心职责和装饰功能分开。</li>
+<li>可以对一个对象进行多次装饰，组装成不同的组合，得到功能更强大的类。<h6 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h6></li>
+<li>产生很多小对象，大量小对象占据内存，影响性能。</li>
+<li>产生很多功能相似的对象，不易排错。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+	<div>
+	 
+	</div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/六大原则/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王恒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/19/六大原则/" itemprop="url">设计模式六大原则</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-19T10:23:55+08:00">
+                2018-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/19/六大原则/" class="leancloud_visitors" data-flag-title="设计模式六大原则">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h1><h1 id="开放-封闭原则"><a href="#开放-封闭原则" class="headerlink" title="开放-封闭原则"></a>开放-封闭原则</h1><h1 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h1><h1 id="里氏代换原则"><a href="#里氏代换原则" class="headerlink" title="里氏代换原则"></a>里氏代换原则</h1><h1 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h1><h1 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h1><h2 id="单一职责原则-1"><a href="#单一职责原则-1" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>就一个类而言，应该仅有一个引起它变化的原因。如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职责的变化可能会削弱或者抑制这个类完成其他职责的能力。这种耦合会导致脆弱的设计，当他变化时，设计会遭受到意想不到的破坏。做到单一职责原则，代码才是真正的易维护，易扩展，易复用，灵活多样。<br>高内聚，低耦合。</p>
 <h2 id="开放-封闭原则-1"><a href="#开放-封闭原则-1" class="headerlink" title="开放-封闭原则"></a>开放-封闭原则</h2><p>软件实体(类、模块、函数等等)应该可以扩展，但是不能修改。</p>
-<h6 id="1-这个原则其实有连个特征，一个是“对于扩展是开放的”，另一个是“对于修改是封闭的”。"><a href="#1-这个原则其实有连个特征，一个是“对于扩展是开放的”，另一个是“对于修改是封闭的”。" class="headerlink" title="1. 这个原则其实有连个特征，一个是“对于扩展是开放的”，另一个是“对于修改是封闭的”。"></a>1. 这个原则其实有连个特征，一个是“对于扩展是开放的”，另一个是“对于修改是封闭的”。</h6><h6 id="2-面对需求的改变可以保持相对的稳定。"><a href="#2-面对需求的改变可以保持相对的稳定。" class="headerlink" title="2. 面对需求的改变可以保持相对的稳定。"></a>2. 面对需求的改变可以保持相对的稳定。</h6><h6 id="3-在我们最初编写代码时，假设变化不会发生。当发生变化时，我们就创建抽象来隔离以后发生的同类变化。"><a href="#3-在我们最初编写代码时，假设变化不会发生。当发生变化时，我们就创建抽象来隔离以后发生的同类变化。" class="headerlink" title="3. 在我们最初编写代码时，假设变化不会发生。当发生变化时，我们就创建抽象来隔离以后发生的同类变化。"></a>3. 在我们最初编写代码时，假设变化不会发生。当发生变化时，我们就创建抽象来隔离以后发生的同类变化。</h6><h6 id="4-面对需求，对程序的改动是通过增加新代码进行的，而不是更改现有的代码。"><a href="#4-面对需求，对程序的改动是通过增加新代码进行的，而不是更改现有的代码。" class="headerlink" title="4. 面对需求，对程序的改动是通过增加新代码进行的，而不是更改现有的代码。"></a>4. 面对需求，对程序的改动是通过增加新代码进行的，而不是更改现有的代码。</h6><h6 id="5-我们希望的是在开发工作展开不久就知道可能发生的变化，查明可能发生的变化所等待的时间越长，要创建正确的抽象就越困难。"><a href="#5-我们希望的是在开发工作展开不久就知道可能发生的变化，查明可能发生的变化所等待的时间越长，要创建正确的抽象就越困难。" class="headerlink" title="5. 我们希望的是在开发工作展开不久就知道可能发生的变化，查明可能发生的变化所等待的时间越长，要创建正确的抽象就越困难。"></a>5. 我们希望的是在开发工作展开不久就知道可能发生的变化，查明可能发生的变化所等待的时间越长，要创建正确的抽象就越困难。</h6><h6 id="6-开放-封闭原则是面对对象的核心所在。遵循这个原则可以带来面对对象的所声称的巨大好处，也就是可维护，可扩展，可复用，灵活性好。开发人员应该对程序中呈现出频繁变化的那些部分作出抽象，然而，对于应用程序中的每个部分都能刻意地进行抽象同样是不可取的。拒绝不成熟的抽象和抽象本身都很重要。"><a href="#6-开放-封闭原则是面对对象的核心所在。遵循这个原则可以带来面对对象的所声称的巨大好处，也就是可维护，可扩展，可复用，灵活性好。开发人员应该对程序中呈现出频繁变化的那些部分作出抽象，然而，对于应用程序中的每个部分都能刻意地进行抽象同样是不可取的。拒绝不成熟的抽象和抽象本身都很重要。" class="headerlink" title="6. 开放-封闭原则是面对对象的核心所在。遵循这个原则可以带来面对对象的所声称的巨大好处，也就是可维护，可扩展，可复用，灵活性好。开发人员应该对程序中呈现出频繁变化的那些部分作出抽象，然而，对于应用程序中的每个部分都能刻意地进行抽象同样是不可取的。拒绝不成熟的抽象和抽象本身都很重要。"></a>6. 开放-封闭原则是面对对象的核心所在。遵循这个原则可以带来面对对象的所声称的巨大好处，也就是可维护，可扩展，可复用，灵活性好。开发人员应该对程序中呈现出频繁变化的那些部分作出抽象，然而，对于应用程序中的每个部分都能刻意地进行抽象同样是不可取的。拒绝不成熟的抽象和抽象本身都很重要。</h6><h2 id="依赖倒转原则-1"><a href="#依赖倒转原则-1" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h2><h6 id="1-高层模块不应该依赖底层模块，两个都应该依赖接口。"><a href="#1-高层模块不应该依赖底层模块，两个都应该依赖接口。" class="headerlink" title="1. 高层模块不应该依赖底层模块，两个都应该依赖接口。"></a>1. 高层模块不应该依赖底层模块，两个都应该依赖接口。</h6><h6 id="2-抽象不应该依赖于细节，细节应该依赖抽象。"><a href="#2-抽象不应该依赖于细节，细节应该依赖抽象。" class="headerlink" title="2. 抽象不应该依赖于细节，细节应该依赖抽象。"></a>2. 抽象不应该依赖于细节，细节应该依赖抽象。</h6><h6 id="3-依赖倒转其实可以说是面对对象的标志，用哪种语言来编写程序不重要，如果编写时考虑的都是如何针对抽象编程而不是针对细节编程，即程序中所有的依赖关系都是终止于抽象类或接口，那就是面对对象的设计，反之那就是过程化的设计了。"><a href="#3-依赖倒转其实可以说是面对对象的标志，用哪种语言来编写程序不重要，如果编写时考虑的都是如何针对抽象编程而不是针对细节编程，即程序中所有的依赖关系都是终止于抽象类或接口，那就是面对对象的设计，反之那就是过程化的设计了。" class="headerlink" title="3. 依赖倒转其实可以说是面对对象的标志，用哪种语言来编写程序不重要，如果编写时考虑的都是如何针对抽象编程而不是针对细节编程，即程序中所有的依赖关系都是终止于抽象类或接口，那就是面对对象的设计，反之那就是过程化的设计了。"></a>3. 依赖倒转其实可以说是面对对象的标志，用哪种语言来编写程序不重要，如果编写时考虑的都是如何针对抽象编程而不是针对细节编程，即程序中所有的依赖关系都是终止于抽象类或接口，那就是面对对象的设计，反之那就是过程化的设计了。</h6><h2 id="里氏代换原则-1"><a href="#里氏代换原则-1" class="headerlink" title="里氏代换原则"></a>里氏代换原则</h2><p>子类型必须能够替换掉它们的父类型。</p>
-<h6 id="正是由于子类型的可替换才使得使用父类类型的模块在无需修改的情况下就可以扩展。"><a href="#正是由于子类型的可替换才使得使用父类类型的模块在无需修改的情况下就可以扩展。" class="headerlink" title="正是由于子类型的可替换才使得使用父类类型的模块在无需修改的情况下就可以扩展。"></a>正是由于子类型的可替换才使得使用父类类型的模块在无需修改的情况下就可以扩展。</h6>
+<h6 id="1-这个原则其实有连个特征，一个是“对于扩展是开放的”，另一个是“对于修改是封闭的”。"><a href="#1-这个原则其实有连个特征，一个是“对于扩展是开放的”，另一个是“对于修改是封闭的”。" class="headerlink" title="1. 这个原则其实有连个特征，一个是“对于扩展是开放的”，另一个是“对于修改是封闭的”。"></a>1. 这个原则其实有连个特征，一个是“对于扩展是开放的”，另一个是“对于修改是封闭的”。</h6><h6 id="2-面对需求的改变可以保持相对的稳定。"><a href="#2-面对需求的改变可以保持相对的稳定。" class="headerlink" title="2. 面对需求的改变可以保持相对的稳定。"></a>2. 面对需求的改变可以保持相对的稳定。</h6><h6 id="3-在我们最初编写代码时，假设变化不会发生。当发生变化时，我们就创建抽象来隔离以后发生的同类变化。"><a href="#3-在我们最初编写代码时，假设变化不会发生。当发生变化时，我们就创建抽象来隔离以后发生的同类变化。" class="headerlink" title="3. 在我们最初编写代码时，假设变化不会发生。当发生变化时，我们就创建抽象来隔离以后发生的同类变化。"></a>3. 在我们最初编写代码时，假设变化不会发生。当发生变化时，我们就创建抽象来隔离以后发生的同类变化。</h6><h6 id="4-面对需求，对程序的改动是通过增加新代码进行的，而不是更改现有的代码。"><a href="#4-面对需求，对程序的改动是通过增加新代码进行的，而不是更改现有的代码。" class="headerlink" title="4. 面对需求，对程序的改动是通过增加新代码进行的，而不是更改现有的代码。"></a>4. 面对需求，对程序的改动是通过增加新代码进行的，而不是更改现有的代码。</h6><h6 id="5-我们希望的是在开发工作展开不久就知道可能发生的变化，查明可能发生的变化所等待的时间越长，要创建正确的抽象就越困难。"><a href="#5-我们希望的是在开发工作展开不久就知道可能发生的变化，查明可能发生的变化所等待的时间越长，要创建正确的抽象就越困难。" class="headerlink" title="5. 我们希望的是在开发工作展开不久就知道可能发生的变化，查明可能发生的变化所等待的时间越长，要创建正确的抽象就越困难。"></a>5. 我们希望的是在开发工作展开不久就知道可能发生的变化，查明可能发生的变化所等待的时间越长，要创建正确的抽象就越困难。</h6><h6 id="6-开放-封闭原则是面对对象的核心所在。遵循这个原则可以带来面对对象的所声称的巨大好处，也就是可维护，可扩展，可复用，灵活性好。开发人员应该对程序中呈现出频繁变化的那些部分作出抽象，然而，对于应用程序中的每个部分都能刻意地进行抽象同样是不可取的。拒绝不成熟的抽象和抽象本身都很重要。"><a href="#6-开放-封闭原则是面对对象的核心所在。遵循这个原则可以带来面对对象的所声称的巨大好处，也就是可维护，可扩展，可复用，灵活性好。开发人员应该对程序中呈现出频繁变化的那些部分作出抽象，然而，对于应用程序中的每个部分都能刻意地进行抽象同样是不可取的。拒绝不成熟的抽象和抽象本身都很重要。" class="headerlink" title="6. 开放-封闭原则是面对对象的核心所在。遵循这个原则可以带来面对对象的所声称的巨大好处，也就是可维护，可扩展，可复用，灵活性好。开发人员应该对程序中呈现出频繁变化的那些部分作出抽象，然而，对于应用程序中的每个部分都能刻意地进行抽象同样是不可取的。拒绝不成熟的抽象和抽象本身都很重要。"></a>6. 开放-封闭原则是面对对象的核心所在。遵循这个原则可以带来面对对象的所声称的巨大好处，也就是可维护，可扩展，可复用，灵活性好。开发人员应该对程序中呈现出频繁变化的那些部分作出抽象，然而，对于应用程序中的每个部分都能刻意地进行抽象同样是不可取的。拒绝不成熟的抽象和抽象本身都很重要。</h6><h3 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h3><p><strong>CRM系统可以显示各种类型的图表，如饼状图和柱状图等，为了支持多种图表显示方式，原始设计方案如图1所示：</strong><br><img src="https://note.youdao.com/yws/public/resource/dcd6c83981ade3a9e7c5fe476dff3a87/xmlnote/6C522F285C4243CE9B25ADB5A80841AA/1715" alt="image"><br><strong>在ChartDisplay类的display()方法中存在如下代码片段：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (type.equals(&quot;pie&quot;)) &#123;</span><br><span class="line">    PieChart chart = new PieChart();</span><br><span class="line">    chart.display();</span><br><span class="line">&#125;</span><br><span class="line">else if (type.equals(&quot;bar&quot;)) &#123;</span><br><span class="line">    BarChart chart = new BarChart();</span><br><span class="line">    chart.display();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在该代码中，如果需要增加一个新的图表类，如折线图LineChart，则需要修改ChartDisplay类的display()方法的源代码，增加新的判断逻辑，违反了开闭原则。<br>在本实例中，由于在ChartDisplay类的display()方法中针对每一个图表类编程，因此增加新的图表类不得不修改源代码。可以通过抽象化的方式对系统进行重构，使之增加新的图表类时无须修改源代码，满足开闭原则。具体做法如下：</p>
+<p>(1) 增加一个抽象图表类AbstractChart，将各种具体图表类作为其子类；</p>
+<p>(2)  ChartDisplay类针对抽象图表类进行编程，由客户端来决定使用哪种具体图表。</p>
+<p>重构后结构如图2所示：<br><img src="https://note.youdao.com/yws/public/resource/dcd6c83981ade3a9e7c5fe476dff3a87/xmlnote/FCEC9C3458FF496984DD1BA866B3CBB8/1729" alt="image"><br>在图2中，我们引入了<strong>抽象图表类AbstractChart，且ChartDisplay针对抽象图表类进行编程，并通过setChart()方法由客户端来设置实例化的具体图表对象，在ChartDisplay的display()方法中调用chart对象的display()方法显示图表。如果需要增加一种新的图表，如折线图LineChart，只需要将LineChart也作为AbstractChart的子类，在客户端向ChartDisplay中注入一个LineChart对象即可，无须修改现有类库的源代码。</strong>    </p>
+<h2 id="依赖倒转原则-1"><a href="#依赖倒转原则-1" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h2><h6 id="1-高层模块不应该依赖底层模块，两个都应该依赖接口。"><a href="#1-高层模块不应该依赖底层模块，两个都应该依赖接口。" class="headerlink" title="1. 高层模块不应该依赖底层模块，两个都应该依赖接口。"></a>1. 高层模块不应该依赖底层模块，两个都应该依赖接口。</h6><h6 id="2-抽象不应该依赖于细节，细节应该依赖抽象。"><a href="#2-抽象不应该依赖于细节，细节应该依赖抽象。" class="headerlink" title="2. 抽象不应该依赖于细节，细节应该依赖抽象。"></a>2. 抽象不应该依赖于细节，细节应该依赖抽象。</h6><h6 id="3-依赖倒转其实可以说是面对对象的标志，用哪种语言来编写程序不重要，如果编写时考虑的都是如何针对抽象编程而不是针对细节编程，即程序中所有的依赖关系都是终止于抽象类或接口，那就是面对对象的设计，反之那就是过程化的设计了。"><a href="#3-依赖倒转其实可以说是面对对象的标志，用哪种语言来编写程序不重要，如果编写时考虑的都是如何针对抽象编程而不是针对细节编程，即程序中所有的依赖关系都是终止于抽象类或接口，那就是面对对象的设计，反之那就是过程化的设计了。" class="headerlink" title="3. 依赖倒转其实可以说是面对对象的标志，用哪种语言来编写程序不重要，如果编写时考虑的都是如何针对抽象编程而不是针对细节编程，即程序中所有的依赖关系都是终止于抽象类或接口，那就是面对对象的设计，反之那就是过程化的设计了。"></a>3. 依赖倒转其实可以说是面对对象的标志，用哪种语言来编写程序不重要，如果编写时考虑的都是如何针对抽象编程而不是针对细节编程，即程序中所有的依赖关系都是终止于抽象类或接口，那就是面对对象的设计，反之那就是过程化的设计了。</h6><p>如果说开闭原则是面向对象设计的目标的话，那么依赖倒转原则就是面向对象设计的主要实现机制之一，它是系统抽象化的具体实现。</p>
+<h3 id="例：-1"><a href="#例：-1" class="headerlink" title="例："></a>例：</h3><p><strong>该系统经常需要将存储在TXT或Excel文件中的客户信息转存到数据库中，因此需要进行数据格式转换。在客户数据操作类中将调用数据格式转换类的方法实现格式转换和数据库插入操作，初始设计方案结构如图1所示</strong>：<br><img src="https://note.youdao.com/yws/public/resource/dcd6c83981ade3a9e7c5fe476dff3a87/xmlnote/23B7AD4C56254214806B444B539DCB94/1748" alt="image"><br>由于每次转换数据时数据来源不一定相同，因此需要更换数据转换类，如有时候需要将TXTDataConvertor改为ExcelDataConvertor，此时，需要修改CustomerDAO的源代码，而且在引入并使用新的数据转换类时也不得不修改CustomerDAO的源代码，系统扩展性较差，违反了开闭原则，现需要对该方案进行重构。</p>
+<p>由于CustomerDAO针对具体数据转换类编程，因此在增加新的数据转换类或者更换数据转换类时都不得不修改CustomerDAO的源代码。我们可以通过引入抽象数据转换类解决该问题，在引入抽象数据转换类DataConvertor之后，CustomerDAO针对抽象类DataConvertor编程，而将具体数据转换类名存储在配置文件中，符合依赖倒转原则。根据里氏代换原则，程序运行时，具体数据转换类对象将替换DataConvertor类型的对象，程序不会出现任何问题。更换具体数据转换类时无须修改源代码，只需要修改配置文件；如果需要增加新的具体数据转换类，只要将新增数据转换类作为DataConvertor的子类并修改配置文件即可，原有代码无须做任何修改，满足开闭原则。重构后的结构如图2所示：<br><img src="https://note.youdao.com/yws/public/resource/dcd6c83981ade3a9e7c5fe476dff3a87/xmlnote/10E8C5996C50467291E1F2360C9A90B6/1746" alt="image"><br><strong>在上述重构过程中，我们使用了开闭原则、里氏代换原则和依赖倒转原则，在大多数情况下，这三个设计原则会同时出现，开闭原则是目标，里氏代换原则是基础，依赖倒转原则是手段，它们相辅相成，相互补充，目标一致，只是分析问题时所站角度不同而已。</strong></p>
+<h2 id="里氏代换原则-1"><a href="#里氏代换原则-1" class="headerlink" title="里氏代换原则"></a>里氏代换原则</h2><p>子类型必须能够替换掉它们的父类型。</p>
+<p><strong>在使用里氏代换原则时需要注意如下几个问题：</strong></p>
+<p> (1)子类必须实现父类中声明的所有方法。根据里氏代换原则，为了保证系统的扩展性，在程序中通常使用父类来进行定义，如果一个方法只存在子类中，在父类中不提供相应的声明，则无法在以父类定义的对象中使用该方法。</p>
+<p> (2) 我们在运用里氏代换原则时，尽量把父类设计为抽象类或者接口，让子类继承父类或实现父接口，并实现在父类中声明的方法，运行时，子类实例替换父类实例，我们可以很方便地扩展系统的功能，同时无须修改原有子类的代码，增加新的功能可以通过增加一个新的子类来实现。里氏代换原则是开闭原则的具体实现手段之一。</p>
+<p>(3) Java语言中，在编译阶段，Java编译器会检查一个程序是否符合里氏代换原则，这是一个与实现无关的、纯语法意义上的检查，但Java编译器的检查是有局限的。</p>
+<h6 id="正是由于子类型的可替换才使得使用父类类型的模块在无需修改的情况下就可以扩展。"><a href="#正是由于子类型的可替换才使得使用父类类型的模块在无需修改的情况下就可以扩展。" class="headerlink" title="正是由于子类型的可替换才使得使用父类类型的模块在无需修改的情况下就可以扩展。"></a>正是由于子类型的可替换才使得使用父类类型的模块在无需修改的情况下就可以扩展。</h6><h2 id="迪米特法则-1"><a href="#迪米特法则-1" class="headerlink" title="迪米特法则"></a>迪米特法则</h2><p><strong>如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用。如果其中一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用</strong>。</p>
+<p>开发CRM系统包含很多业务操作窗口，在这些窗口中，某些界面控件之间存在复杂的交互关系，一个控件事件的触发将导致多个其他界面控件产生响应，例如，当一个按钮(Button)被单击时，对应的列表框(List)、组合框(ComboBox)、文本框(TextBox)、文本标签(Label)等都将发生改变，在初始设计方案中，界面控件之间的交互关系可简化为如图1所示结构：<br><img src="https://note.youdao.com/yws/public/resource/dcd6c83981ade3a9e7c5fe476dff3a87/xmlnote/442B95BD876B42E6BB492BA27432373C/1765" alt="image"><br>由于界面控件之间的交互关系复杂，导致在该窗口中增加新的界面控件时需要修改与之交互的其他控件的源代码，系统扩展性较差，也不便于增加和删除新控件。</p>
+<p><strong>重构：</strong><br><img src="https://note.youdao.com/yws/public/resource/dcd6c83981ade3a9e7c5fe476dff3a87/xmlnote/37FEE325A21D465FAB6EA0BFB377BA07/1767" alt="image"></p>
+<h2 id="接口隔离原则-1"><a href="#接口隔离原则-1" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h2><p>使用多个专门的接口，而不使用单一的总接口，即客户端不应该依赖那些它不需要的接口。</p>
+<p>(1) 当把“接口”理解成一个类型所提供的所有方法特征的集合的时候，这就是一种逻辑上的概念，接口的划分将直接带来类型的划分。可以把接口理解成角色，一个接口只能代表一个角色，每个角色都有它特定的一个接口，此时，这个原则可以叫做“角色隔离原则”。</p>
+<p>(2) 如果把“接口”理解成狭义的特定语言的接口，那么ISP表达的意思是指接口仅仅提供客户端需要的行为，客户端不需要的行为则隐藏起来，应当为客户端提供尽可能小的单独的接口，而不要提供大的总接口。在面向对象编程语言中，实现一个接口就需要实现该接口中定义的所有方法，因此大的总接口使用起来不一定很方便，为了使接口的职责单一，需要将大接口中的方法根据其职责不同分别放在不同的小接口中，以确保每个接口使用起来都较为方便，并都承担某一单一角色。接口应该尽量细化，同时接口中的方法应该尽量少，每个接口中只包含一个客户端（如子模块或业务逻辑类）所需的方法即可，这种机制也称为“定制服务”，即为不同的客户端提供宽窄不同的接口。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+	<div>
+	 
+	</div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/工厂设计模式/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王恒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/09/工厂设计模式/" itemprop="url">工厂设计模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-09T13:56:26+08:00">
+                2018-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/09/工厂设计模式/" class="leancloud_visitors" data-flag-title="工厂设计模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="工厂设计模式之简单工厂模式"><a href="#工厂设计模式之简单工厂模式" class="headerlink" title="工厂设计模式之简单工厂模式"></a>工厂设计模式之简单工厂模式</h1><h2 id="工厂设计模式的三种形态："><a href="#工厂设计模式的三种形态：" class="headerlink" title="工厂设计模式的三种形态："></a>工厂设计模式的三种形态：</h2><h3 id="1-简单工厂"><a href="#1-简单工厂" class="headerlink" title="1.简单工厂"></a>1.简单工厂</h3><h3 id="2-工厂方法"><a href="#2-工厂方法" class="headerlink" title="2.工厂方法"></a>2.工厂方法</h3><h3 id="3-抽象工厂"><a href="#3-抽象工厂" class="headerlink" title="3.抽象工厂"></a>3.抽象工厂</h3><h2 id="1-简单工厂-1"><a href="#1-简单工厂-1" class="headerlink" title="1.简单工厂"></a>1.简单工厂</h2><p>又叫静态工厂，是工厂模式三种状态中结构最为简单的。主要有一个静态方法，用来接受参数，并根据参数来决定返回实现同一接口的不同类的实例。我们来看一个具体的例子：假设计算两位数的加减乘除运算,有加法类、减法类、乘法类、除法类，我们需要根据运算符来实例化合适的对象。</p>
+<p>我们先定义计算类的抽象接口(因为需要抽象参数numberA和numberB，而定义为抽象类)</p>
+<h4 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">abstract class Operation &#123;</span><br><span class="line">	private double numberA = 0;</span><br><span class="line">	private double numberB = 0;</span><br><span class="line">	</span><br><span class="line">	abstract double getResult();</span><br><span class="line">    //get()和set()方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="加法类"><a href="#加法类" class="headerlink" title="加法类"></a>加法类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class AddOperation extends Operation &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	double getResult() &#123;</span><br><span class="line">		double result = getNumberA()+getNumberB();</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="减法类"><a href="#减法类" class="headerlink" title="减法类"></a>减法类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class SubOperation extends Operation &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	double getResult() &#123;</span><br><span class="line">		double result = getNumberA()-getNumberB();</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里乘法和除法就不写了</p>
+<h4 id="工厂类"><a href="#工厂类" class="headerlink" title="工厂类"></a>工厂类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class OperationFactory &#123;</span><br><span class="line">	public static Operation createOperation(String operate) &#123;</span><br><span class="line">		Operation operation = null;</span><br><span class="line">		switch(operate) &#123;</span><br><span class="line">			case &quot;+&quot;:</span><br><span class="line">				operation = new AddOperation();</span><br><span class="line">			case &quot;-&quot;:</span><br><span class="line">				operation = new SubOperation();</span><br><span class="line">			case &quot;*&quot;:</span><br><span class="line">				operation = new MulOperation();</span><br><span class="line">			case &quot;/&quot;:</span><br><span class="line">				operation = new DivOperation();</span><br><span class="line">		&#125;</span><br><span class="line">		return	operation;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="优点：-由上例可以看出，简单工厂核心就是simplefactory类，它拥有判断和创建类的权利，我们需要什么类，它就会返回什么类，当加入新的类时，只需要修改工厂类即可。"><a href="#优点：-由上例可以看出，简单工厂核心就是simplefactory类，它拥有判断和创建类的权利，我们需要什么类，它就会返回什么类，当加入新的类时，只需要修改工厂类即可。" class="headerlink" title="优点： 由上例可以看出，简单工厂核心就是simplefactory类，它拥有判断和创建类的权利，我们需要什么类，它就会返回什么类，当加入新的类时，只需要修改工厂类即可。"></a>优点： 由上例可以看出，简单工厂核心就是simplefactory类，它拥有判断和创建类的权利，我们需要什么类，它就会返回什么类，当加入新的类时，只需要修改工厂类即可。</h5><h5 id="缺点：-随着产品种类数量的增长，必须修改工厂类，造成逻辑复杂，不利于维护。可使用工厂方法和抽象工厂得到解决。"><a href="#缺点：-随着产品种类数量的增长，必须修改工厂类，造成逻辑复杂，不利于维护。可使用工厂方法和抽象工厂得到解决。" class="headerlink" title="缺点： 随着产品种类数量的增长，必须修改工厂类，造成逻辑复杂，不利于维护。可使用工厂方法和抽象工厂得到解决。"></a>缺点： 随着产品种类数量的增长，必须修改工厂类，造成逻辑复杂，不利于维护。可使用工厂方法和抽象工厂得到解决。</h5><h2 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h2><p>工厂方法和简单工厂的主要区别是，简单工厂是把创建产品的职能都放在一个类里面，而工厂方法则把不同的产品放在实现了工厂接口的不同工厂类里面，不需要每次修改工厂类，利于维护。</p>
+<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>在工厂方法的基础上引进了分类管理。</p>
+<h6 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h6><p> 冰箱： 冰箱-A,冰箱-B</p>
+<p>洗衣机：洗衣机-A,洗衣机-B</p>
+<p>我们可以为冰箱和洗衣机分别定义两个产品接口，以对他们进行分类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//洗衣机接口 </span><br><span class="line">public interface Washer&#123; </span><br><span class="line">&#125; </span><br><span class="line">  </span><br><span class="line">//冰箱接口 </span><br><span class="line">public interface Icebox&#123; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>接着，我们分别创建这两个接口的具体产品<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//洗衣机-A </span><br><span class="line">public class WasherA implements Washer&#123; </span><br><span class="line">  public WasherA()&#123; </span><br><span class="line">    System.out.println(&quot;洗衣机-A被制造了&quot;); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">//洗衣机-B </span><br><span class="line">public class WasherB implements Washer&#123; </span><br><span class="line">  public WasherB()&#123; </span><br><span class="line">    System.out.println(&quot;洗衣机-B被制造了&quot;); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">//冰箱-A </span><br><span class="line">public class IceboxA implements Icebox&#123; </span><br><span class="line">  public IceboxA()&#123; </span><br><span class="line">    System.out.println(&quot;冰箱-A被制造了&quot;); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">//冰箱-B </span><br><span class="line">public class IceboxB implements Icebox&#123; </span><br><span class="line">  public IceboxB()&#123; </span><br><span class="line">    System.out.println(&quot;冰箱-B被制造了&quot;); </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>到此，产品部分我们准备好了，接下来我们来处理工厂部分，我们先来定义工厂行为接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Factory&#123; </span><br><span class="line">    public Washer createWasher(); </span><br><span class="line">    public Icebox createIcebox(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来我创造具体的工厂类，我们根据上面产品的接口，把型号A的产品分为一类，由一个工厂来管理，把型号为B的产品有另一个工厂管理，根据这个分类，我们可以实现如下的两个具体工厂类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//创建型号为A的产品工厂 </span><br><span class="line">public class FactoryA implements Factory&#123; </span><br><span class="line">    //创建洗衣机-A </span><br><span class="line">    public Washer createWasher()&#123; </span><br><span class="line">      return new WasherA(); </span><br><span class="line">    &#125; </span><br><span class="line">    //创建冰箱-A </span><br><span class="line">    public Icebox createIcebox()&#123; </span><br><span class="line">      return new IceboxA(); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line">//创建型号为B的产品工厂 </span><br><span class="line">public class FactoryB implements Factory&#123; </span><br><span class="line">    //创建洗衣机-B </span><br><span class="line">    public Washer createWasher()&#123; </span><br><span class="line">      return new WasherB(); </span><br><span class="line">    &#125; </span><br><span class="line">    //创建冰箱-B </span><br><span class="line">    public Icebox createIcebox()&#123; </span><br><span class="line">      return new IceboxB(); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，我们的抽象工厂就完成了。有上面可以看出，在运用上我觉得工厂方法和抽象工厂，都有自己的应用场景，并没有什么优劣之分，但在应用抽象工厂之前，要先对创建的对象进行系统的分类，这点很重要，好的产品分类规则能为具体工厂类的选择调用和以后的扩展提供清晰的思路.</p>
+<p>总结</p>
+<p>以上就是本文关于Java设计模式——工厂设计模式详解的全部内容，希望对大家有所帮助。</p>
+
           
         
       
@@ -542,160 +873,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/工厂设计模式/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王恒">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/09/工厂设计模式/" itemprop="url">工厂设计模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-09T13:33:58+08:00">
-                2018-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/11/09/工厂设计模式/" class="leancloud_visitors" data-flag-title="工厂设计模式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="工厂设计模式之简单工厂模式"><a href="#工厂设计模式之简单工厂模式" class="headerlink" title="工厂设计模式之简单工厂模式"></a>工厂设计模式之简单工厂模式</h1><h2 id="工厂设计模式的三种形态："><a href="#工厂设计模式的三种形态：" class="headerlink" title="工厂设计模式的三种形态："></a>工厂设计模式的三种形态：</h2><h3 id="1-简单工厂"><a href="#1-简单工厂" class="headerlink" title="1.简单工厂"></a>1.简单工厂</h3><h3 id="2-工厂方法"><a href="#2-工厂方法" class="headerlink" title="2.工厂方法"></a>2.工厂方法</h3><h3 id="3-抽象工厂"><a href="#3-抽象工厂" class="headerlink" title="3.抽象工厂"></a>3.抽象工厂</h3><h2 id="1-简单工厂-1"><a href="#1-简单工厂-1" class="headerlink" title="1.简单工厂"></a>1.简单工厂</h2><p>又叫静态工厂，是工厂模式三种状态中结构最为简单的。主要有一个静态方法，用来接受参数，并根据参数来决定返回实现同一接口的不同类的实例。我们来看一个具体的例子：假设计算两位数的加减乘除运算,有加法类、减法类、乘法类、除法类，我们需要根据运算符来实例化合适的对象。</p>
-<p>我们先定义计算类的抽象接口(因为需要抽象参数numberA和numberB，而定义为抽象类)</p>
-<h4 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">abstract class Operation &#123;</span><br><span class="line">	private double numberA = 0;</span><br><span class="line">	private double numberB = 0;</span><br><span class="line">	</span><br><span class="line">	abstract double getResult();</span><br><span class="line">    //get()和set()方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="加法类"><a href="#加法类" class="headerlink" title="加法类"></a>加法类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class AddOperation extends Operation &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	double getResult() &#123;</span><br><span class="line">		double result = getNumberA()+getNumberB();</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="减法类"><a href="#减法类" class="headerlink" title="减法类"></a>减法类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class SubOperation extends Operation &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	double getResult() &#123;</span><br><span class="line">		double result = getNumberA()-getNumberB();</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里乘法和除法就不写了</p>
-<h4 id="工厂类"><a href="#工厂类" class="headerlink" title="工厂类"></a>工厂类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class OperationFactory &#123;</span><br><span class="line">	public static Operation createOperation(String operate) &#123;</span><br><span class="line">		Operation operation = null;</span><br><span class="line">		switch(operate) &#123;</span><br><span class="line">			case &quot;+&quot;:</span><br><span class="line">				operation = new AddOperation();</span><br><span class="line">			case &quot;-&quot;:</span><br><span class="line">				operation = new SubOperation();</span><br><span class="line">			case &quot;*&quot;:</span><br><span class="line">				operation = new MulOperation();</span><br><span class="line">			case &quot;/&quot;:</span><br><span class="line">				operation = new DivOperation();</span><br><span class="line">		&#125;</span><br><span class="line">		return	operation;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="优点：-由上例可以看出，简单工厂核心就是simplefactory类，它拥有判断和创建类的权利，我们需要什么类，它就会返回什么类，当加入新的类时，只需要修改工厂类即可。"><a href="#优点：-由上例可以看出，简单工厂核心就是simplefactory类，它拥有判断和创建类的权利，我们需要什么类，它就会返回什么类，当加入新的类时，只需要修改工厂类即可。" class="headerlink" title="优点： 由上例可以看出，简单工厂核心就是simplefactory类，它拥有判断和创建类的权利，我们需要什么类，它就会返回什么类，当加入新的类时，只需要修改工厂类即可。"></a>优点： 由上例可以看出，简单工厂核心就是simplefactory类，它拥有判断和创建类的权利，我们需要什么类，它就会返回什么类，当加入新的类时，只需要修改工厂类即可。</h5><h5 id="缺点：-随着产品种类数量的增长，必须修改工厂类，造成逻辑复杂，不利于维护。可使用工厂方法和抽象工厂得到解决。"><a href="#缺点：-随着产品种类数量的增长，必须修改工厂类，造成逻辑复杂，不利于维护。可使用工厂方法和抽象工厂得到解决。" class="headerlink" title="缺点： 随着产品种类数量的增长，必须修改工厂类，造成逻辑复杂，不利于维护。可使用工厂方法和抽象工厂得到解决。"></a>缺点： 随着产品种类数量的增长，必须修改工厂类，造成逻辑复杂，不利于维护。可使用工厂方法和抽象工厂得到解决。</h5><h2 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h2><p>工厂方法和简单工厂的主要区别是，简单工厂是把创建产品的职能都放在一个类里面，而工厂方法则把不同的产品放在实现了工厂接口的不同工厂类里面，不需要每次修改工厂类，利于维护。</p>
-<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>在工厂方法的基础上引进了分类管理。</p>
-<h6 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h6><p> 冰箱： 冰箱-A,冰箱-B</p>
-<p>洗衣机：洗衣机-A,洗衣机-B</p>
-<p>我们可以为冰箱和洗衣机分别定义两个产品接口，以对他们进行分类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//洗衣机接口 </span><br><span class="line">public interface Washer&#123; </span><br><span class="line">&#125; </span><br><span class="line">  </span><br><span class="line">//冰箱接口 </span><br><span class="line">public interface Icebox&#123; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>接着，我们分别创建这两个接口的具体产品<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//洗衣机-A </span><br><span class="line">public class WasherA implements Washer&#123; </span><br><span class="line">  public WasherA()&#123; </span><br><span class="line">    System.out.println(&quot;洗衣机-A被制造了&quot;); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">//洗衣机-B </span><br><span class="line">public class WasherB implements Washer&#123; </span><br><span class="line">  public WasherB()&#123; </span><br><span class="line">    System.out.println(&quot;洗衣机-B被制造了&quot;); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">//冰箱-A </span><br><span class="line">public class IceboxA implements Icebox&#123; </span><br><span class="line">  public IceboxA()&#123; </span><br><span class="line">    System.out.println(&quot;冰箱-A被制造了&quot;); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">//冰箱-B </span><br><span class="line">public class IceboxB implements Icebox&#123; </span><br><span class="line">  public IceboxB()&#123; </span><br><span class="line">    System.out.println(&quot;冰箱-B被制造了&quot;); </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>到此，产品部分我们准备好了，接下来我们来处理工厂部分，我们先来定义工厂行为接口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Factory&#123; </span><br><span class="line">    public Washer createWasher(); </span><br><span class="line">    public Icebox createIcebox(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接下来我创造具体的工厂类，我们根据上面产品的接口，把型号A的产品分为一类，由一个工厂来管理，把型号为B的产品有另一个工厂管理，根据这个分类，我们可以实现如下的两个具体工厂类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//创建型号为A的产品工厂 </span><br><span class="line">public class FactoryA implements Factory&#123; </span><br><span class="line">    //创建洗衣机-A </span><br><span class="line">    public Washer createWasher()&#123; </span><br><span class="line">      return new WasherA(); </span><br><span class="line">    &#125; </span><br><span class="line">    //创建冰箱-A </span><br><span class="line">    public Icebox createIcebox()&#123; </span><br><span class="line">      return new IceboxA(); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line">//创建型号为B的产品工厂 </span><br><span class="line">public class FactoryB implements Factory&#123; </span><br><span class="line">    //创建洗衣机-B </span><br><span class="line">    public Washer createWasher()&#123; </span><br><span class="line">      return new WasherB(); </span><br><span class="line">    &#125; </span><br><span class="line">    //创建冰箱-B </span><br><span class="line">    public Icebox createIcebox()&#123; </span><br><span class="line">      return new IceboxB(); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样，我们的抽象工厂就完成了。有上面可以看出，在运用上我觉得工厂方法和抽象工厂，都有自己的应用场景，并没有什么优劣之分，但在应用抽象工厂之前，要先对创建的对象进行系统的分类，这点很重要，好的产品分类规则能为具体工厂类的选择调用和以后的扩展提供清晰的思路.</p>
-<p>总结</p>
-<p>以上就是本文关于Java设计模式——工厂设计模式详解的全部内容，希望对大家有所帮助。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-	<div>
-	 
-	</div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -742,7 +919,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
