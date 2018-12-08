@@ -256,6 +256,208 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/二叉树/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王恒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/08/二叉树/" itemprop="url">二叉树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-08T14:18:30+08:00">
+                2018-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/08/二叉树/" class="leancloud_visitors" data-flag-title="二叉树">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>二分搜索树</li>
+<li>平衡二叉树：AVL树，红黑树</li>
+<li>完全二叉树：除了最高层以外，其余层节点个数都达到最大值，并且最高层节点都优先集中在最左边。</li>
+<li>满二叉树：除了最高层有叶子节点，其余层无叶子，并且非叶子节点都有2个子节点。</li>
+<li>堆，并查集：对数据进行特殊的操作产生高效的结果</li>
+<li>线段树，Trie(字典树，前缀树)<br>。<h1 id="二分搜索树"><a href="#二分搜索树" class="headerlink" title="二分搜索树"></a>二分搜索树</h1>二分搜索树是一种二叉树。每个结点的值大于其左子树所有结点的值，小于其右子树所有结点的值。每一棵子树也是一个二叉搜索树。</li>
+</ol>
+<p><strong>性质：</strong></p>
+<ol>
+<li>任意结点，左子树的值小于当前结点的值，右子树的值大于当前结点的值。</li>
+<li>没有父节点的称为根结点。</li>
+<li>每一个非根节点都有一个父节点。</li>
+<li>第i层上最多有2^(n-1)个结点。</li>
+<li>包含n个结点的二叉树高度至少为long2(n+1)</li>
+<li>存储的元素必须有可比性。<h3 id="二叉树的创建："><a href="#二叉树的创建：" class="headerlink" title="二叉树的创建："></a>二叉树的创建：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class BST&lt;E extends Comparable&lt;E&gt;&gt; &#123;</span><br><span class="line">	private class Node&#123;</span><br><span class="line">		private E e;</span><br><span class="line">		private Node left;</span><br><span class="line">		private Node right;</span><br><span class="line">		public Node(E e) &#123;</span><br><span class="line">			this.e = e;</span><br><span class="line">			left = null;</span><br><span class="line">			right = null;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private Node root;</span><br><span class="line">	private int size;</span><br><span class="line">	</span><br><span class="line">	public BST() &#123;</span><br><span class="line">		root = null;</span><br><span class="line">		size = 0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h3><h5 id="前序遍历："><a href="#前序遍历：" class="headerlink" title="前序遍历："></a>前序遍历：</h5><p>由于递归算法比较简单，主要描述下非递归算法。</p>
+<p>第一种：利用栈的原理，打印当前栈中弹出的元素，将弹出元素的右结点先压入栈中，再将左结点压入栈中，遍历到栈空为止</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Stack&lt;Node&gt; stack = new Stack&lt;&gt;();</span><br><span class="line">		stack.push(node);</span><br><span class="line">		while(!stack.isEmpty()) &#123;</span><br><span class="line">			Node cur = stack.pop();</span><br><span class="line">			</span><br><span class="line">			System.out.println(cur.e);</span><br><span class="line">			if(cur.right != null)</span><br><span class="line">				stack.push(node.right);</span><br><span class="line">			if(cur.left != null)</span><br><span class="line">				stack.push(node.left);</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种：打印当前结点，将当前结点压入栈中，遍历当前元素左结点，直到遍历到左结点为空，再弹出元素，遍历弹出元素的右结点，遍历到栈空为止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">p = root;</span><br><span class="line">while(p!=null||!stack.isEmpty())&#123;</span><br><span class="line">        if(p!=null)&#123;</span><br><span class="line">            System.out.print(p.data.toString()+&quot; &quot;);</span><br><span class="line">            stack.push(p);</span><br><span class="line">            p = p.left;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            System.out.print(&quot;^ &quot;);</span><br><span class="line">            p = stack.pop();</span><br><span class="line">            p = p.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>递归遍历：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private void preOrder(Node node) &#123;</span><br><span class="line">	if(node != null) &#123;</span><br><span class="line">		System.out.println(node.e);</span><br><span class="line">		preOrder(node.left);</span><br><span class="line">		preOrder(node.right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h5><p>先把当前结点压入栈中，遍历当前结点的左结点，直到为空，弹出栈中的元素进行打印，再将弹出元素的右子树进行入栈，直到栈为空为止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">p = root;</span><br><span class="line">while(p!=null||!stack.isEmpty())&#123;//p非空或栈为空</span><br><span class="line">        if(p!=null)&#123;</span><br><span class="line">            stack.push(p);//p节点入栈</span><br><span class="line">            p=p.left;//进入左子树</span><br><span class="line">        &#125;else&#123;//p为空栈非空</span><br><span class="line">            System.out.print(&quot;^ &quot;); </span><br><span class="line">            p = stack.pop();//p指向出栈节点</span><br><span class="line">            System.out.print(p.data.toString()+&quot; &quot;);//访问节点</span><br><span class="line">            p=p.right;  //进入右子树</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>递归遍历：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private void inOrder(Node node) &#123;</span><br><span class="line">	if(node != null) &#123;</span><br><span class="line">		inOrder(node.left);</span><br><span class="line">		System.out.println(node.e);	</span><br><span class="line">		inOrder(node.right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h5><p>需要两个栈，一个操作栈，一个代操作栈。操作栈进行遍历，先进右子树，遍历到空为止，弹出操作栈中的元素，遍历左子树，直到操作栈为空为止。然后将代操作中元素依次遍历。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Stack&lt;Node&gt; stack = new Stack&lt;&gt;(); //辅助栈</span><br><span class="line">		Stack&lt;Node&gt; output = new Stack&lt;&gt;();//将元素全部压入栈中进行输出</span><br><span class="line">		Node p = node;</span><br><span class="line">		while(p != null || !stack.isEmpty()) &#123;</span><br><span class="line">			if(p != null) &#123;</span><br><span class="line">				stack.push(p);</span><br><span class="line">				output.push(p);//进入代操作栈</span><br><span class="line">				p = p.right;//先进右子树</span><br><span class="line">			&#125;else &#123;</span><br><span class="line">				//添加空元素结点对空节点进行标记</span><br><span class="line">				output.push(new Node(null));</span><br><span class="line">				p = stack.pop();</span><br><span class="line">				p = p.left;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		//依次出栈</span><br><span class="line">		while(!output.isEmpty()) &#123;</span><br><span class="line">			Node cur = output.pop();</span><br><span class="line">			if(cur.e == null)</span><br><span class="line">				System.out.println(&quot;null&quot;);</span><br><span class="line">			else</span><br><span class="line">				System.out.println(cur.e);</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<p>递归遍历：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private void porOrder(Node node) &#123;</span><br><span class="line">		if(node != null) &#123;</span><br><span class="line">			porOrder(node.left);</span><br><span class="line">			porOrder(node.right);</span><br><span class="line">			System.out.println(node.e);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="层次遍历"><a href="#层次遍历" class="headerlink" title="层次遍历"></a>层次遍历</h5><p>非递归使用队列进行遍历：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public void levelOrder() &#123;</span><br><span class="line">		Queue&lt;Node&gt; queue = new LinkedList&lt;&gt;();</span><br><span class="line">		queue.add(root);</span><br><span class="line">		while(!queue.isEmpty()) &#123;</span><br><span class="line">			Node cur = queue.remove();</span><br><span class="line">			System.out.println(cur.e);</span><br><span class="line">			if(cur.left != null) &#123;</span><br><span class="line">				queue.add(cur.left);</span><br><span class="line">			&#125;</span><br><span class="line">			if(cur.right != null) &#123;</span><br><span class="line">				queue.add(cur.right);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>递归遍历：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public void levelOrder(Node node) &#123;</span><br><span class="line">		if(node == null)</span><br><span class="line">			return;</span><br><span class="line">		int depth = depth(node);</span><br><span class="line">		for(int i = 1; i &lt;= depth;i++) &#123;</span><br><span class="line">			levelOrder(node,i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	private void levelOrder(Node node, int level) &#123;</span><br><span class="line">		if(node == null || level &lt; 1) &#123;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		if(level == 1) &#123;</span><br><span class="line">			System.out.println(node.e);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		//左子树</span><br><span class="line">		levelOrder(node.left, level-1);</span><br><span class="line">		//右子树</span><br><span class="line">		levelOrder(node.right, level-1);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 计算二叉树的层数</span><br><span class="line">	 * @param node</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	private int depth(Node node) &#123;</span><br><span class="line">		if(node == null) &#123;</span><br><span class="line">			return	0;</span><br><span class="line">		&#125;</span><br><span class="line">		int left = depth(node.left);</span><br><span class="line">		int right = depth(node.right);</span><br><span class="line">		return	left &gt; right ? left+1 : right+1;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="向二叉树添加元素："><a href="#向二叉树添加元素：" class="headerlink" title="向二叉树添加元素："></a>向二叉树添加元素：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public void add(E e) &#123;</span><br><span class="line">			root = add(root,e);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 向以node为结点的二分搜索树插入元素</span><br><span class="line">	 * @param node</span><br><span class="line">	 * @param e</span><br><span class="line">	 */</span><br><span class="line">	private Node add(Node node,E e) &#123;</span><br><span class="line">		//如果传入的结点为空 则进行插入</span><br><span class="line">		if(node == null) &#123;</span><br><span class="line">			size++;</span><br><span class="line">			return	new Node(e);</span><br><span class="line">		&#125;</span><br><span class="line">		//如果小于则进行左子树进行递归</span><br><span class="line">		if(e.compareTo(node.e) &lt; 0) &#123;</span><br><span class="line">			node.left = add(node.left,e);</span><br><span class="line">		&#125;else if(e.compareTo(node.e) &gt; 0)&#123;</span><br><span class="line">			node.right = add(node.right,e);</span><br><span class="line">		&#125;</span><br><span class="line">		//相等则不进行操作 直接返回</span><br><span class="line">		return	node; </span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二叉树删除元素："><a href="#二叉树删除元素：" class="headerlink" title="二叉树删除元素："></a>二叉树删除元素：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	 * 删除任意元素</span><br><span class="line">	 * @param e</span><br><span class="line">	 */</span><br><span class="line">	public void remove(E e) &#123;</span><br><span class="line">		root = remove(root,e);</span><br><span class="line">	&#125;</span><br><span class="line">	private Node remove(Node node, E e) &#123;</span><br><span class="line">	    //当node为空 直接返回</span><br><span class="line">		if(node == null) &#123;</span><br><span class="line">			return null;</span><br><span class="line">		&#125;</span><br><span class="line">		if(e.compareTo(node.e) &lt; 0) &#123;</span><br><span class="line">			node.left = remove(node.left,e);</span><br><span class="line">		&#125;else if(e.compareTo(node.e) &gt; 0)&#123;</span><br><span class="line">			node.right = remove(node.right,e);</span><br><span class="line">		&#125;else &#123;//e==node.e</span><br><span class="line">		    //当左子树为空 返回右子树</span><br><span class="line">			if(node.left == null) &#123;</span><br><span class="line">				Node rightNode = node.right;</span><br><span class="line">				node.right = null;</span><br><span class="line">				size--;</span><br><span class="line">				return	rightNode;</span><br><span class="line">			&#125;</span><br><span class="line">			//当右子树为空 返回左子树</span><br><span class="line">			if(node.right == null) &#123;</span><br><span class="line">				Node leftNode = node.left;</span><br><span class="line">				node.left = null;</span><br><span class="line">				size--;</span><br><span class="line">				return	leftNode;</span><br><span class="line">			&#125;</span><br><span class="line">			//找到待删结点右子树的最小值(也可以将左子树的最大值替代待删结点)</span><br><span class="line">			Node min = minimum(node.right);</span><br><span class="line">			//删除最小值，并让最小值的右子树指向返回值</span><br><span class="line">			min.right = removeMin(node.right);</span><br><span class="line">			min.left = node.left;</span><br><span class="line">			node.left = node.right = null;</span><br><span class="line">		&#125;</span><br><span class="line">		return	node;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+	<div>
+	 
+	</div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/29/链表/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1805,7 +2007,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1895,7 +2097,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共12k字</span>
+  <span class="post-count">博客全站共13.5k字</span>
 </div>
         
 
