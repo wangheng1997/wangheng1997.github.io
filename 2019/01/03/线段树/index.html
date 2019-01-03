@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="设计模式,">
+  <meta name="keywords" content="数据结构,">
 
 
 
@@ -83,21 +83,20 @@
 
 
 
-<meta name="description" content="装饰模式动态地给对象添加一些额外的职责，就增加功能来说，装饰模式比生成子类更灵活。 1.实现与被包装类的接口2.定义一个与被包装类的引用3.定义一个构造函数，把被构造对象传进来4.对于不需要覆写的方法直接调用5.对于需要改写的方法，写自己的方法装饰者模式的基本结构Component: 定义了对象接口，可以给这些对象动态地添加职责。 ConcreteComponent：定义了一个具体的对象，也就是我">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="线段树(区间树,segment tree)线段树是一颗平衡二叉树，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。  时间复杂度：   操作 数组 线段树     更新 O(n) O(log n)   查询 O(n) O(log n)    如果区间有N个元素，数组需要多少个结点？ 分析：如果N=2^K, 总共是K层，需要2N的空间； 如果N=(2^k)+1，总共是K+1层，">
+<meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="装饰模式">
-<meta property="og:url" content="http://yoursite.com/2018/11/19/装饰模式/index.html">
+<meta property="og:title" content="线段树">
+<meta property="og:url" content="http://yoursite.com/2019/01/03/线段树/index.html">
 <meta property="og:site_name" content="隔壁老王专属博客">
-<meta property="og:description" content="装饰模式动态地给对象添加一些额外的职责，就增加功能来说，装饰模式比生成子类更灵活。 1.实现与被包装类的接口2.定义一个与被包装类的引用3.定义一个构造函数，把被构造对象传进来4.对于不需要覆写的方法直接调用5.对于需要改写的方法，写自己的方法装饰者模式的基本结构Component: 定义了对象接口，可以给这些对象动态地添加职责。 ConcreteComponent：定义了一个具体的对象，也就是我">
+<meta property="og:description" content="线段树(区间树,segment tree)线段树是一颗平衡二叉树，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。  时间复杂度：   操作 数组 线段树     更新 O(n) O(log n)   查询 O(n) O(log n)    如果区间有N个元素，数组需要多少个结点？ 分析：如果N=2^K, 总共是K层，需要2N的空间； 如果N=(2^k)+1，总共是K+1层，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/cbc180f214532c7c9d0a072fcf56f9a1/xmlnote/32561F2169A34262B74B8347B7E31B77/1798">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/cbc180f214532c7c9d0a072fcf56f9a1/xmlnote/FCD7335B50A34821AB746D89B72C945A/1833">
-<meta property="og:updated_time" content="2018-11-20T09:24:56.753Z">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/09ad7f9f378ef0dbf3d4e890ec76f047/xmlnote/C0DB9D74E793495F9FDAA470C51CD86E/2948">
+<meta property="og:updated_time" content="2019-01-03T14:34:03.553Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="装饰模式">
-<meta name="twitter:description" content="装饰模式动态地给对象添加一些额外的职责，就增加功能来说，装饰模式比生成子类更灵活。 1.实现与被包装类的接口2.定义一个与被包装类的引用3.定义一个构造函数，把被构造对象传进来4.对于不需要覆写的方法直接调用5.对于需要改写的方法，写自己的方法装饰者模式的基本结构Component: 定义了对象接口，可以给这些对象动态地添加职责。 ConcreteComponent：定义了一个具体的对象，也就是我">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/cbc180f214532c7c9d0a072fcf56f9a1/xmlnote/32561F2169A34262B74B8347B7E31B77/1798">
+<meta name="twitter:title" content="线段树">
+<meta name="twitter:description" content="线段树(区间树,segment tree)线段树是一颗平衡二叉树，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。  时间复杂度：   操作 数组 线段树     更新 O(n) O(log n)   查询 O(n) O(log n)    如果区间有N个元素，数组需要多少个结点？ 分析：如果N=2^K, 总共是K层，需要2N的空间； 如果N=(2^k)+1，总共是K+1层，">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/09ad7f9f378ef0dbf3d4e890ec76f047/xmlnote/C0DB9D74E793495F9FDAA470C51CD86E/2948">
 
 
 
@@ -127,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/19/装饰模式/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/03/线段树/">
 
 
 
 
 
-  <title>装饰模式 | 隔壁老王专属博客</title>
+  <title>线段树 | 隔壁老王专属博客</title>
   
 
 
@@ -260,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/装饰模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/线段树/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王恒">
@@ -277,7 +276,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">装饰模式</h1>
+          <h1 class="post-title" itemprop="name headline">线段树</h1>
         
 
         <div class="post-meta">
@@ -289,8 +288,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-19T20:51:04+08:00">
-                2018-11-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-03T22:33:28+08:00">
+                2019-01-03
               </time>
             
 
@@ -307,7 +306,7 @@
 
           
           
-             <span id="/2018/11/19/装饰模式/" class="leancloud_visitors" data-flag-title="装饰模式">
+             <span id="/2019/01/03/线段树/" class="leancloud_visitors" data-flag-title="线段树">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -332,7 +331,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  643
+                  923
                 </span>
               
 
@@ -348,7 +347,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  4
                 </span>
               
             </div>
@@ -369,31 +368,41 @@
       
 
       
-        <h1 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h1><p>动态地给对象添加一些额外的职责，就增加功能来说，装饰模式比生成子类更灵活。</p>
-<h6 id="1-实现与被包装类的接口"><a href="#1-实现与被包装类的接口" class="headerlink" title="1.实现与被包装类的接口"></a>1.实现与被包装类的接口</h6><h6 id="2-定义一个与被包装类的引用"><a href="#2-定义一个与被包装类的引用" class="headerlink" title="2.定义一个与被包装类的引用"></a>2.定义一个与被包装类的引用</h6><h6 id="3-定义一个构造函数，把被构造对象传进来"><a href="#3-定义一个构造函数，把被构造对象传进来" class="headerlink" title="3.定义一个构造函数，把被构造对象传进来"></a>3.定义一个构造函数，把被构造对象传进来</h6><h6 id="4-对于不需要覆写的方法直接调用"><a href="#4-对于不需要覆写的方法直接调用" class="headerlink" title="4.对于不需要覆写的方法直接调用"></a>4.对于不需要覆写的方法直接调用</h6><h6 id="5-对于需要改写的方法，写自己的方法"><a href="#5-对于需要改写的方法，写自己的方法" class="headerlink" title="5.对于需要改写的方法，写自己的方法"></a>5.对于需要改写的方法，写自己的方法</h6><h3 id="装饰者模式的基本结构"><a href="#装饰者模式的基本结构" class="headerlink" title="装饰者模式的基本结构"></a>装饰者模式的基本结构</h3><p><img src="https://note.youdao.com/yws/public/resource/cbc180f214532c7c9d0a072fcf56f9a1/xmlnote/32561F2169A34262B74B8347B7E31B77/1798" alt="image"><br><strong>Component:</strong> 定义了对象接口，可以给这些对象动态地添加职责。</p>
-<p><strong>ConcreteComponent：</strong><br>定义了一个具体的对象，也就是我们要装饰的对象。</p>
-<p><strong>Decorator：</strong><br>继承自Component,装饰者需要共同实现的接口（也可以是抽象类），用来保证装饰者和被装饰者有共同的超类，并保证每一个装饰者都有一些必须具有的性质，如每一个装饰者都有一个实例变量（instance  variable）用来保存某个Component类型的类的引用。<br><strong>ConcreteDecorator：</strong><br>继承自Decorator，用来装饰Component类型的类（不能装饰抽象类），为其添加新的特性，可以在委托被装饰者的行为完成之前或之后的任意时候。</p>
-<h3 id="一个简单的实例"><a href="#一个简单的实例" class="headerlink" title="一个简单的实例"></a>一个简单的实例</h3><p>给人搭配不同的服饰系统</p>
-<p><strong>component：</strong> 人的抽象类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//component抽象类</span><br><span class="line"> abstract class Person &#123;</span><br><span class="line">	protected String name;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return	name;</span><br><span class="line">	&#125;</span><br><span class="line">	public abstract void show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>ConcreteComponent：</strong> 工人类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Worker extends Person &#123;</span><br><span class="line"></span><br><span class="line">	public Worker(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void show() &#123;</span><br><span class="line">		System.out.println(&quot;装扮的&quot;+getName());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Decorator：</strong> 装饰类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Finery extends Person &#123;</span><br><span class="line">	//</span><br><span class="line">	protected Person person;</span><br><span class="line">	public void decorate(Person person) &#123;</span><br><span class="line">		this.person = person;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void show() &#123;</span><br><span class="line">		if(person != null) &#123;</span><br><span class="line">			person.show();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>ConcreteDecorator：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//大T恤类</span><br><span class="line">public class Tshirts extends Finery &#123;</span><br><span class="line">	public void show() &#123;</span><br><span class="line">		System.out.println(&quot;大T恤&quot;);</span><br><span class="line">		person.show();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//垮裤类</span><br><span class="line">public class BigTrouser extends Finery &#123;</span><br><span class="line">	public void show() &#123;</span><br><span class="line">		System.out.println(&quot;垮裤&quot;);</span><br><span class="line">		person.show();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>客户端</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class ClientTest &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Person person = new Worker(&quot;张三&quot;);</span><br><span class="line">		Tshirts tshirts = new Tshirts();</span><br><span class="line">		BigTrouser bigTrouser = new BigTrouser();</span><br><span class="line">		tshirts.decorate(person);</span><br><span class="line">		bigTrouser.decorate(tshirts);</span><br><span class="line">		bigTrouser.show();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h5><p><img src="https://note.youdao.com/yws/public/resource/cbc180f214532c7c9d0a072fcf56f9a1/xmlnote/FCD7335B50A34821AB746D89B72C945A/1833" alt="image"></p>
-<p><strong>总结：</strong></p>
-<h6 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h6><ol>
-<li>装饰功能是为已有功能动态地添加更多功能的方式。</li>
-<li>简化原有的类，有效的把类的核心职责和装饰功能分开。</li>
-<li>可以对一个对象进行多次装饰，组装成不同的组合，得到功能更强大的类。<h6 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h6></li>
-<li>产生很多小对象，大量小对象占据内存，影响性能。</li>
-<li>产生很多功能相似的对象，不易排错。</li>
-</ol>
+        <h1 id="线段树-区间树-segment-tree"><a href="#线段树-区间树-segment-tree" class="headerlink" title="线段树(区间树,segment tree)"></a>线段树(区间树,segment tree)</h1><p>线段树是一颗平衡二叉树，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/09ad7f9f378ef0dbf3d4e890ec76f047/xmlnote/C0DB9D74E793495F9FDAA470C51CD86E/2948" alt="image"></p>
+<h4 id="时间复杂度："><a href="#时间复杂度：" class="headerlink" title="时间复杂度："></a>时间复杂度：</h4><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>数组</th>
+<th>线段树</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>更新</td>
+<td>O(n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>查询</td>
+<td>O(n)</td>
+<td>O(log n)</td>
+</tr>
+</tbody>
+</table>
+<p>如果区间有N个元素，数组需要多少个结点？</p>
+<p>分析：如果N=2^K, 总共是K层，需要2N的空间；<br> 如果N=(2^k)+1，总共是K+1层，第K+1层需要大于等于N，则K+1层容量是2N，线段树需要4N的空间。<br> <strong>总而言之就是，线段树容量为最后一层容量的二倍。因此，创建线段树数组时容量为4N。</strong></p>
+<h4 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h4><p> 创建线段树<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class SegmentTree&lt;E&gt; &#123;</span><br><span class="line">	private E[] tree;</span><br><span class="line">	private E[] data;</span><br><span class="line">	private Merger&lt;E&gt; merger;</span><br><span class="line"></span><br><span class="line">	public SegmentTree(E[] arr, Merger&lt;E&gt; merger) &#123;</span><br><span class="line">		this.merger = merger;</span><br><span class="line"></span><br><span class="line">		data = (E[]) new Object[arr.length];</span><br><span class="line">		for (int i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">			data[i] = arr[i];</span><br><span class="line">		&#125;</span><br><span class="line">		tree = (E[]) new Object[arr.length * 4];</span><br><span class="line">		// 0 表示根结点， 左区间边界， 右区间边界</span><br><span class="line">		buildSegmentTree(0, 0, data.length - 1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 在treeIndex的位置创建表示区间[left,right]区间</span><br><span class="line">	 * </span><br><span class="line">	 * @param i</span><br><span class="line">	 * @param j</span><br><span class="line">	 * @param k</span><br><span class="line">	 */</span><br><span class="line">	private void buildSegmentTree(int treeIndex, int left, int right) &#123;</span><br><span class="line">		if (left == right) &#123;</span><br><span class="line">			tree[treeIndex] = data[left];</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		int mid = left + (right - left) / 2;</span><br><span class="line">		int leftChild = leftChild(treeIndex);</span><br><span class="line">		int rightChild = rightChild(treeIndex);</span><br><span class="line">		buildSegmentTree(leftChild, left, mid);</span><br><span class="line">		buildSegmentTree(rightChild, mid + 1, right);</span><br><span class="line">		// 根据应用场景确定结点存储的值 使用merger接口 来处理不同业务</span><br><span class="line">		tree[treeIndex] = merger.merge(tree[leftChild], tree[rightChild]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>查询线段树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public E query(int queryL, int queryR) &#123;</span><br><span class="line">		if (queryL &lt; 0 || queryL &gt;= data.length ||</span><br><span class="line">				queryR &lt; 0 || queryR &gt;= data.length || queryL &gt; queryR) &#123;</span><br><span class="line">			throw new IllegalArgumentException(&quot;角标异常&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		//0(第一个)表示根结点</span><br><span class="line">		// 0(第二个)表示区间左边界 </span><br><span class="line">		//data.length - 1 表示区间右边界 后面为查询区间</span><br><span class="line">		return	query(0,0,data.length-1,queryL,queryR);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private E query(int rootIndex, int left, int right, int queryL, int queryR) &#123;</span><br><span class="line">		if(left == queryL &amp;&amp; right == queryR)</span><br><span class="line">			return	tree[rootIndex];</span><br><span class="line">		</span><br><span class="line">		int mid = left + (right - left) / 2;</span><br><span class="line">		int leftChild = leftChild(rootIndex);</span><br><span class="line">		int rightChild = rightChild(rootIndex);</span><br><span class="line">		//如果查询左边界大于等于mid+1  直接查询当前节点的右子树</span><br><span class="line">		if(queryL &gt;= mid+1) &#123;</span><br><span class="line">			return	query(rightChild,mid+1,right,queryL,queryR);</span><br><span class="line">		&#125; else if(queryR &lt;= mid) &#123; //查询右边界小于等于mid，直接查询当前结点右子树</span><br><span class="line">			return query(leftChild,left,mid,queryL,queryR);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		//如果左右两边都有 则两边都进行查询 然后进行操作</span><br><span class="line">		E leftResult = query(leftChild,left,mid,queryL,mid);</span><br><span class="line">		E rightResult = query(rightChild,mid+1,right,mid+1,queryR);</span><br><span class="line">		return	merger.merge(leftResult, rightResult);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>更新线段树：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public void update(int index,E e) &#123;</span><br><span class="line">		if (index &lt; 0 || index &gt; data.length)</span><br><span class="line">			throw new IllegalArgumentException(&quot;角标越界&quot;);</span><br><span class="line">		data[index] = e;</span><br><span class="line">		set(0,0,data.length-1,index,e);</span><br><span class="line">	&#125;</span><br><span class="line">	private void set(int treeIndex, int left, int right, int index, E e) &#123;</span><br><span class="line">		if(left == right) &#123;</span><br><span class="line">			tree[treeIndex] = e;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		int mid = left + (right - left) / 2;</span><br><span class="line">		int leftChild = leftChild(treeIndex);</span><br><span class="line">		int rightChild = rightChild(treeIndex);</span><br><span class="line">		if(index &lt;= mid) &#123;</span><br><span class="line">			set(leftChild,left,mid,index,e);</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			set(rightChild,mid+1,right,index,e);</span><br><span class="line">		&#125;</span><br><span class="line">		tree[treeIndex] = merger.merge(tree[leftChild], tree[rightChild]);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>辅助函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	 * 根据角标查找元素</span><br><span class="line">	 * </span><br><span class="line">	 * @param index</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public E get(int index) &#123;</span><br><span class="line">		if (index &lt; 0 || index &gt; data.length)</span><br><span class="line">			throw new IllegalArgumentException(&quot;角标越界&quot;);</span><br><span class="line">		return data[index];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 返回元素个数</span><br><span class="line">	 * </span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public int getSize() &#123;</span><br><span class="line">		return data.length;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 返回左孩子角标</span><br><span class="line">	 */</span><br><span class="line">	public int leftChild(int index) &#123;</span><br><span class="line">		return 2 * index + 1;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 返回右孩子的角标</span><br><span class="line">	 * </span><br><span class="line">	 * @param index</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public int rightChild(int index) &#123;</span><br><span class="line">		return 2 * index + 2;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>通过接口对线段树进行不同的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Merger&lt;E&gt; &#123;</span><br><span class="line">	E merge(E a,E b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 最经典线段树问题：区间染色，区间查询</p>
+<p>区间查询应用：注册用户中消费最高的用户？ 消费最少得用户？ 学习时间最长的用户？<br><strong>解决问题：</strong> leetcode上303,307问题。</p>
 
       
     </div>
@@ -426,7 +435,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+            <a href="/tags/数据结构/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
           
         </div>
       
@@ -439,8 +448,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/19/六大原则/" rel="next" title="设计模式六大原则">
-                <i class="fa fa-chevron-left"></i> 设计模式六大原则
+              <a href="/2019/01/03/Trie字典树/" rel="next" title="Trie字典树">
+                <i class="fa fa-chevron-left"></i> Trie字典树
               </a>
             
           </div>
@@ -448,10 +457,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/21/代理模式/" rel="prev" title="代理模式">
-                代理模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -581,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#装饰模式"><span class="nav-number">1.</span> <span class="nav-text">装饰模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-实现与被包装类的接口"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">1.实现与被包装类的接口</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-定义一个与被包装类的引用"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">2.定义一个与被包装类的引用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-定义一个构造函数，把被构造对象传进来"><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">3.定义一个构造函数，把被构造对象传进来</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-对于不需要覆写的方法直接调用"><span class="nav-number">1.0.0.0.0.4.</span> <span class="nav-text">4.对于不需要覆写的方法直接调用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-对于需要改写的方法，写自己的方法"><span class="nav-number">1.0.0.0.0.5.</span> <span class="nav-text">5.对于需要改写的方法，写自己的方法</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰者模式的基本结构"><span class="nav-number">1.0.1.</span> <span class="nav-text">装饰者模式的基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个简单的实例"><span class="nav-number">1.0.2.</span> <span class="nav-text">一个简单的实例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果："><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">运行结果：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#优点："><span class="nav-number">1.0.2.0.1.1.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#缺点："><span class="nav-number">1.0.2.0.1.2.</span> <span class="nav-text">缺点：</span></a></li></ol></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线段树-区间树-segment-tree"><span class="nav-number">1.</span> <span class="nav-text">线段树(区间树,segment tree)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度："><span class="nav-number">1.0.0.1.</span> <span class="nav-text">时间复杂度：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码如下："><span class="nav-number">1.0.0.2.</span> <span class="nav-text">代码如下：</span></a></li></ol></li></ol></div>
             
 
           </div>

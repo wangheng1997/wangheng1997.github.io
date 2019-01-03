@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="M19emfPg1s">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="优先队列出队顺序和入队顺序无关，和优先级有关。使用堆这种数据结构来实现优先队列(出队和入队时间复杂度是logn)。 堆二叉堆最小堆：堆中的每个结点总是小于父结点的值。最大堆：堆中的每个结点总是不大于父结点的值。接口：  int getSize(); //得到元素个数 boolean isEmpty(); //判断是否为空 add(E e);//向堆中添加元素 remove(E e); //从堆中删">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="堆和优先队列">
+<meta property="og:url" content="http://yoursite.com/2019/01/03/堆和优先队列/index.html">
+<meta property="og:site_name" content="隔壁老王专属博客">
+<meta property="og:description" content="优先队列出队顺序和入队顺序无关，和优先级有关。使用堆这种数据结构来实现优先队列(出队和入队时间复杂度是logn)。 堆二叉堆最小堆：堆中的每个结点总是小于父结点的值。最大堆：堆中的每个结点总是不大于父结点的值。接口：  int getSize(); //得到元素个数 boolean isEmpty(); //判断是否为空 add(E e);//向堆中添加元素 remove(E e); //从堆中删">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-03T14:32:23.633Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="堆和优先队列">
+<meta name="twitter:description" content="优先队列出队顺序和入队顺序无关，和优先级有关。使用堆这种数据结构来实现优先队列(出队和入队时间复杂度是logn)。 堆二叉堆最小堆：堆中的每个结点总是小于父结点的值。最大堆：堆中的每个结点总是不大于父结点的值。接口：  int getSize(); //得到元素个数 boolean isEmpty(); //判断是否为空 add(E e);//向堆中添加元素 remove(E e); //从堆中删">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/03/堆和优先队列/">
+
+
+
+
+
+  <title>堆和优先队列 | 隔壁老王专属博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">隔壁老王专属博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人学习博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/堆和优先队列/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王恒">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="隔壁老王专属博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">堆和优先队列</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-03T22:30:26+08:00">
+                2019-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/01/03/堆和优先队列/" class="leancloud_visitors" data-flag-title="堆和优先队列">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h1><p>出队顺序和入队顺序无关，和优先级有关。使用堆这种数据结构来实现优先队列(<strong>出队和入队时间复杂度是logn</strong>)。</p>
+<h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><h2 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h2><h6 id="最小堆：堆中的每个结点总是小于父结点的值。"><a href="#最小堆：堆中的每个结点总是小于父结点的值。" class="headerlink" title="最小堆：堆中的每个结点总是小于父结点的值。"></a>最小堆：堆中的每个结点总是小于父结点的值。</h6><h6 id="最大堆：堆中的每个结点总是不大于父结点的值。"><a href="#最大堆：堆中的每个结点总是不大于父结点的值。" class="headerlink" title="最大堆：堆中的每个结点总是不大于父结点的值。"></a>最大堆：堆中的每个结点总是不大于父结点的值。</h6><p>接口：</p>
+<ol>
+<li>int getSize(); //得到元素个数</li>
+<li>boolean isEmpty(); //判断是否为空</li>
+<li>add(E e);//向堆中添加元素</li>
+<li>remove(E e); //从堆中删除元素</li>
+<li>get(int index); //从堆中查询元素</li>
+</ol>
+<h4 id="添加元素："><a href="#添加元素：" class="headerlink" title="添加元素："></a>添加元素：</h4><p>向堆末尾添加元素，进行上浮：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private void siftUp(int index) &#123;</span><br><span class="line">		// 如果下标大于0且父节点的值小于子节点 则交换</span><br><span class="line">		while (index &gt; 0 &amp;&amp; data.get(parent(index)).compareTo(data.get(index)) &lt; 0) &#123;</span><br><span class="line">			data.swap(index, parent(index));</span><br><span class="line">			index = parent(index);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="删除元素："><a href="#删除元素：" class="headerlink" title="删除元素："></a>删除元素：</h4><p>取出最大值，将最大值和最后一个元素互换，删除最大值，将最小值进行下沉：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">private void siftDown(int index) &#123;</span><br><span class="line">		// 如果左孩子存在 进入循环</span><br><span class="line">		while (leftChild(index) &lt; data.getSize()) &#123;</span><br><span class="line">			// 左孩子下标</span><br><span class="line">			int j = leftChild(index);</span><br><span class="line">			// 如果右孩子存在 且于左孩子 将右孩子下标赋给j</span><br><span class="line">			if (j + 1 &lt; data.getSize() &amp;&amp; data.get(j + 1).compareTo(data.get(j)) &gt; 0)</span><br><span class="line">				j = j + 1;</span><br><span class="line">			//将父节点与左右孩子最大值比较</span><br><span class="line">			if(data.get(index).compareTo(data.get(j)) &lt; 0) &#123;</span><br><span class="line">				data.swap(index, j);</span><br><span class="line">				index = j;</span><br><span class="line">			&#125;else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>具体代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line">public class MaxHeap&lt;E extends Comparable&lt;E&gt;&gt; &#123;</span><br><span class="line">	private Array&lt;E&gt; data;</span><br><span class="line"></span><br><span class="line">	public MaxHeap() &#123;</span><br><span class="line">		data = new Array&lt;&gt;();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public MaxHeap(int capacity) &#123;</span><br><span class="line">		data = new Array&lt;&gt;(capacity);</span><br><span class="line">	&#125;</span><br><span class="line">	public MaxHeap(E[] arr) &#123;</span><br><span class="line">		data = new Array&lt;&gt;(arr.length);</span><br><span class="line">		for(int i = 0 ; i &lt; arr.length ;i++) &#123;</span><br><span class="line">			data.add(i, arr[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i = parent(arr.length-1); i &gt;= 0; i--) &#123;</span><br><span class="line">			siftDown(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public int getSize() &#123;</span><br><span class="line">		return data.getSize();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public boolean isEmpty() &#123;</span><br><span class="line">		return data.isEmpty();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 返回父节点的索引</span><br><span class="line">	 * </span><br><span class="line">	 * @param index</span><br><span class="line">	 */</span><br><span class="line">	private int parent(int index) &#123;</span><br><span class="line">		if (index == 0) &#123;</span><br><span class="line">			throw new IllegalArgumentException(&quot;parent-0 does not parent&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		return (index - 1) / 2;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 返回左孩子的索引</span><br><span class="line">	 * </span><br><span class="line">	 * @param index</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	private int leftChild(int index) &#123;</span><br><span class="line">		return 2 * index + 1;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 返回右孩子的索引</span><br><span class="line">	 * </span><br><span class="line">	 * @param index</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	private int rightChild(int index) &#123;</span><br><span class="line">		return 2 * index + 2;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 添加元素</span><br><span class="line">	 * </span><br><span class="line">	 * @param e</span><br><span class="line">	 */</span><br><span class="line">	public void add(E e) &#123;</span><br><span class="line">		data.addLast(e);</span><br><span class="line">		// 因为最大堆中父节点大于孩子结点的值 需要将元素上浮到正确位置</span><br><span class="line">		siftUp(data.getSize() - 1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private void siftUp(int index) &#123;</span><br><span class="line">		// 如果下标大于0且父节点的值小于子节点 则交换</span><br><span class="line">		while (index &gt; 0 &amp;&amp; data.get(parent(index)).compareTo(data.get(index)) &lt; 0) &#123;</span><br><span class="line">			data.swap(index, parent(index));</span><br><span class="line">			index = parent(index);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 取出最大值</span><br><span class="line">	 * </span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public E extractMax() &#123;</span><br><span class="line">		E ret = findMax();</span><br><span class="line"></span><br><span class="line">		data.swap(0, data.getSize() - 1);</span><br><span class="line">		data.removeLast();</span><br><span class="line">		siftDown(0);</span><br><span class="line"></span><br><span class="line">		return ret;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private E findMax() &#123;</span><br><span class="line">		if (data.getSize() == 0)</span><br><span class="line">			throw new IllegalArgumentException(&quot;堆为空 不能返回最大元素&quot;);</span><br><span class="line">		return data.get(0);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private void siftDown(int index) &#123;</span><br><span class="line">		// 如果左孩子存在 进入循环</span><br><span class="line">		while (leftChild(index) &lt; data.getSize()) &#123;</span><br><span class="line">			// 左孩子下标</span><br><span class="line">			int j = leftChild(index);</span><br><span class="line">			// 如果右孩子存在 且于左孩子 将右孩子下标赋给j</span><br><span class="line">			if (j + 1 &lt; data.getSize() &amp;&amp; data.get(j + 1).compareTo(data.get(j)) &gt; 0)</span><br><span class="line">				j = j + 1;</span><br><span class="line">			//将父节点与左右孩子最大值比较</span><br><span class="line">			if(data.get(index).compareTo(data.get(j)) &lt; 0) &#123;</span><br><span class="line">				data.swap(index, j);</span><br><span class="line">				index = j;</span><br><span class="line">			&#125;else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int n = 1000000;</span><br><span class="line">		MaxHeap&lt;Integer&gt; heap = new MaxHeap&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		Random random = new Random();</span><br><span class="line">		</span><br><span class="line">		long start = System.currentTimeMillis();</span><br><span class="line">		for(int i = 0 ; i &lt; n ; i++) &#123;</span><br><span class="line">			heap.add(random.nextInt(Integer.MAX_VALUE));</span><br><span class="line">		&#125;</span><br><span class="line">		long end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(end - start);</span><br><span class="line">		</span><br><span class="line">		Integer[] arr = new Integer[n];</span><br><span class="line">		for(int i = 0 ; i &lt; n ; i++) &#123;</span><br><span class="line">			arr[i] = random.nextInt(Integer.MAX_VALUE);</span><br><span class="line">		&#125;</span><br><span class="line">		start = System.currentTimeMillis();</span><br><span class="line">		MaxHeap&lt;Integer&gt; heap1 = new MaxHeap&lt;Integer&gt;(arr);</span><br><span class="line">		end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(end - start);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="replace操作"><a href="#replace操作" class="headerlink" title="replace操作"></a>replace操作</h3><p>向堆中添加一个元素，并返回最大值。(先取出最大值，然后用添加的新元素覆盖最大值，进行下沉)</p>
+<h3 id="heapify操作"><a href="#heapify操作" class="headerlink" title="heapify操作"></a>heapify操作</h3><p>将一个数组变成堆的结构。<strong>从二叉堆中最后一个非叶子节点开始，向前遍历，进行下沉。</strong></p>
+<h4 id="比较："><a href="#比较：" class="headerlink" title="比较："></a>比较：</h4><p>将数组添加到一个空堆中时间负责度为O(nlogn)</p>
+<p>使用heapify时间复杂度为O(n)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public MaxHeap(E[] arr) &#123;</span><br><span class="line">		data = new Array&lt;&gt;(arr.length);</span><br><span class="line">		for(int i = 0 ; i &lt; arr.length ;i++) &#123;</span><br><span class="line">			data.add(i, arr[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i = parent(arr.length-1); i &gt;= 0; i--) &#123;</span><br><span class="line">			siftDown(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="用堆实现优先队列："><a href="#用堆实现优先队列：" class="headerlink" title="用堆实现优先队列："></a>用堆实现优先队列：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class PerorityQueue&lt;E extends Comparable&lt;E&gt;&gt; implements Queue&lt;E&gt;&#123;</span><br><span class="line">	</span><br><span class="line">	private MaxHeap&lt;E&gt; heap;</span><br><span class="line">	</span><br><span class="line">	public PerorityQueue() &#123;</span><br><span class="line">		heap = new MaxHeap&lt;&gt;();</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void enqueue(E e) &#123;</span><br><span class="line">		heap.add(e);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public E dequeue() &#123;</span><br><span class="line">		return heap.extractMax();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public E getFront() &#123;</span><br><span class="line">		return heap.findMax();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public int getSize() &#123;</span><br><span class="line">		return heap.getSize();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public Boolean isEmpty() &#123;</span><br><span class="line">		return heap.isEmpty();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="堆的应用"><a href="#堆的应用" class="headerlink" title="堆的应用"></a>堆的应用</h2><ol>
+<li>二项堆</li>
+<li>斐波那契堆<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1>在1000000中选出前100名？ 使用优先队列。时间复杂度为(nlong m)。</li>
+</ol>
+<p>java中priorityqueue优先队列是最小堆。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+	<div>
+	 
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+
+	 
+	</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/17/集合和映射/" rel="next" title="集合和映射">
+                <i class="fa fa-chevron-left"></i> 集合和映射
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/03/Trie字典树/" rel="prev" title="Trie字典树">
+                Trie字典树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTk2Ni8xODUxMg"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+	
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="王恒">
+            
+              <p class="site-author-name" itemprop="name">王恒</p>
+              <p class="site-description motion-element" itemprop="description">用来记录平时学习的博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#优先队列"><span class="nav-number">1.</span> <span class="nav-text">优先队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#堆"><span class="nav-number">2.</span> <span class="nav-text">堆</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉堆"><span class="nav-number">2.1.</span> <span class="nav-text">二叉堆</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#最小堆：堆中的每个结点总是小于父结点的值。"><span class="nav-number">2.1.0.0.0.1.</span> <span class="nav-text">最小堆：堆中的每个结点总是小于父结点的值。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#最大堆：堆中的每个结点总是不大于父结点的值。"><span class="nav-number">2.1.0.0.0.2.</span> <span class="nav-text">最大堆：堆中的每个结点总是不大于父结点的值。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加元素："><span class="nav-number">2.1.0.1.</span> <span class="nav-text">添加元素：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除元素："><span class="nav-number">2.1.0.2.</span> <span class="nav-text">删除元素：</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#replace操作"><span class="nav-number">2.1.1.</span> <span class="nav-text">replace操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#heapify操作"><span class="nav-number">2.1.2.</span> <span class="nav-text">heapify操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#比较："><span class="nav-number">2.1.2.1.</span> <span class="nav-text">比较：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用堆实现优先队列："><span class="nav-number">2.1.3.</span> <span class="nav-text">用堆实现优先队列：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆的应用"><span class="nav-number">2.2.</span> <span class="nav-text">堆的应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结："><span class="nav-number">3.</span> <span class="nav-text">总结：</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王恒</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+<!-- 新增访客统计代码 -->
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<!-- 新增访客统计代码 END-->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共16.6k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kJHnuI6UTmeaam41s13QmRrm-gzGzoHsz", "0hjNdXteouwI5rDyFUCLT4KT");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>
