@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="M19emfPg1s">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算机网络,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="OSI参考模型首先，先简单的描述下OSI参考模型。   分为七层：    分层名称 功能     应用层 针对特定应用的协议。   表示层 设备固有数据格式和网络标准数据格式的转换。   会话层 通信管理，负责建立和断开连接的时间。   传输层 负责可靠传输，创建和断开连接。   网络层 地址管理和路由管理。   数据链路层 通过传输介质互联的设备进行数据处理。   物理层 以 ‘0’ ‘1’代表">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP协议总结">
+<meta property="og:url" content="http://yoursite.com/2019/01/12/TCP协议总结/index.html">
+<meta property="og:site_name" content="隔壁老王专属博客">
+<meta property="og:description" content="OSI参考模型首先，先简单的描述下OSI参考模型。   分为七层：    分层名称 功能     应用层 针对特定应用的协议。   表示层 设备固有数据格式和网络标准数据格式的转换。   会话层 通信管理，负责建立和断开连接的时间。   传输层 负责可靠传输，创建和断开连接。   网络层 地址管理和路由管理。   数据链路层 通过传输介质互联的设备进行数据处理。   物理层 以 ‘0’ ‘1’代表">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/b093a926bd1f91621e567c25e43db992/xmlnote/1B3C37ECF6574A44882B3B689B7169D0/3174">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/b093a926bd1f91621e567c25e43db992/xmlnote/51049222328749B48CDC82ED84A9BCF7/3156">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/b093a926bd1f91621e567c25e43db992/xmlnote/D43F0BF61A424119ADA3711E5AD58E46/3158">
+<meta property="og:updated_time" content="2019-01-12T07:07:59.454Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCP协议总结">
+<meta name="twitter:description" content="OSI参考模型首先，先简单的描述下OSI参考模型。   分为七层：    分层名称 功能     应用层 针对特定应用的协议。   表示层 设备固有数据格式和网络标准数据格式的转换。   会话层 通信管理，负责建立和断开连接的时间。   传输层 负责可靠传输，创建和断开连接。   网络层 地址管理和路由管理。   数据链路层 通过传输介质互联的设备进行数据处理。   物理层 以 ‘0’ ‘1’代表">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/b093a926bd1f91621e567c25e43db992/xmlnote/1B3C37ECF6574A44882B3B689B7169D0/3174">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/12/TCP协议总结/">
+
+
+
+
+
+  <title>TCP协议总结 | 隔壁老王专属博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">隔壁老王专属博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人学习博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/TCP协议总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王恒">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="隔壁老王专属博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCP协议总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-12T15:07:03+08:00">
+                2019-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/01/12/TCP协议总结/" class="leancloud_visitors" data-flag-title="TCP协议总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h1><p>首先，先简单的描述下OSI参考模型。</p>
+<p>  分为七层：</p>
+<table>
+<thead>
+<tr>
+<th>分层名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>针对特定应用的协议。</td>
+</tr>
+<tr>
+<td>表示层</td>
+<td>设备固有数据格式和网络标准数据格式的转换。</td>
+</tr>
+<tr>
+<td>会话层</td>
+<td>通信管理，负责建立和断开连接的时间。</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>负责可靠传输，创建和断开连接。</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>地址管理和路由管理。</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>通过传输介质互联的设备进行数据处理。</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>以 ‘0’ ‘1’代表电压的高低，设备之间使用MAC地址进行传输。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h1><h6 id="TCP-IP只是协议群的统称，它是网际协议族。"><a href="#TCP-IP只是协议群的统称，它是网际协议族。" class="headerlink" title="TCP/IP只是协议群的统称，它是网际协议族。"></a>TCP/IP只是协议群的统称，它是网际协议族。</h6><table>
+<thead>
+<tr>
+<th></th>
+<th>分层名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>DNS, URL,HTML, HTTP, TLS/SSL, SMTP, POP, IMAP, MIME, TELNET, SSH, FTP, SNMP, MIB, SIP, RTP, LDAP</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>TCP,UDP,UDP-Lite,SCTP,DCCP</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>ARP,IP,ICMP</td>
+</tr>
+<tr>
+<td>网络接口层</td>
+<td>网卡层和硬件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><p>传输层的主要功能就是能够让应用程序之间实现通信。</p>
+<table>
+<thead>
+<tr>
+<th>协议名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCP</td>
+<td>是一种面向有连接的传输层协议。</td>
+</tr>
+<tr>
+<td> UDP</td>
+<td>面向无连接的传输层协议。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP提供可靠性传输，是可靠的流协议。实行“顺序控制”或“重发控制”机制。此外，还具备流量控制，拥塞控制，提高网络的利用率等。</p>
+<h4 id="TCP协议头格式"><a href="#TCP协议头格式" class="headerlink" title="TCP协议头格式"></a>TCP协议头格式</h4><p><img src="https://note.youdao.com/yws/public/resource/b093a926bd1f91621e567c25e43db992/xmlnote/1B3C37ECF6574A44882B3B689B7169D0/3174" alt="image"></p>
+<h5 id="源端口和目的端口："><a href="#源端口和目的端口：" class="headerlink" title="源端口和目的端口："></a>源端口和目的端口：</h5><p>各占2个字节，分别写入源端口号和目的端口。</p>
+<h5 id="序号seq"><a href="#序号seq" class="headerlink" title="序号seq:"></a>序号seq:</h5><p>占4个字节，用来标记数据段的数据，TCP把发送的所有数据都编上一个序号，第一个字节由本地随机产生，给字节编上序号后，就给每个报文段指定一个序号。<strong>序列号seq就是报文段中第一个序号，</strong> 解决乱序问题。</p>
+<h5 id="确认号ack"><a href="#确认号ack" class="headerlink" title="确认号ack:"></a>确认号ack:</h5><p>占4个字节，是指期望收到对方下一个报文段的第一个数据字节的序号。因此，当前报文段最后一个编号+1就是确认号。用于确认收到，解决不丢包问题。</p>
+<h5 id="确认ACK"><a href="#确认ACK" class="headerlink" title="确认ACK:"></a>确认ACK:</h5><p>仅当ACK=1时确认字段才有效。当ACK=0时确认字段无效。</p>
+<h5 id="同步SYN："><a href="#同步SYN：" class="headerlink" title="同步SYN："></a>同步SYN：</h5><p>连接建立时用于同步序号。当SYN=1，ACK=0时表示：这是一个连接请求报文段。若同意连接，则在响应报文段中使得SYN=1，ACK=1。因此，<strong>SYN=1表示这是一个连接请求，或连接接受报文。</strong> SYN这个标志位只有在TCP建产连接时才会被置1，<strong>握手完成后SYN标志位被置0。</strong></p>
+<h5 id="终止FIN："><a href="#终止FIN：" class="headerlink" title="终止FIN："></a>终止FIN：</h5><p>用来释放一个连接。FIN=1表示：此报文段的发送方的数据已经发送完毕，并要求释放运输连接</p>
+<h4 id="三次握手过程"><a href="#三次握手过程" class="headerlink" title="三次握手过程"></a>三次握手过程</h4><p><img src="https://note.youdao.com/yws/public/resource/b093a926bd1f91621e567c25e43db992/xmlnote/51049222328749B48CDC82ED84A9BCF7/3156" alt="image"></p>
+<h5 id="第一次握手："><a href="#第一次握手：" class="headerlink" title="第一次握手："></a>第一次握手：</h5><p>建立连接时，首部的同部位SYN=1，同时选择一个序列号seq = x，TCP发送SYN包到服务器，并进入SYN_SENT状态，等待服务器确认。(SYN:同步序列标号)</p>
+<h5 id="第二层次握手："><a href="#第二层次握手：" class="headerlink" title="第二层次握手："></a>第二层次握手：</h5><p>服务器收到请求后，向客户端进行确认，SYN=ACK=1，确认号=x+1，同时也为自己选择一个序号seq=y,这时TCP服务器进程进入到SYN-RCVD状态。(即SYN+ACK包)</p>
+<h5 id="第三次握手："><a href="#第三次握手：" class="headerlink" title="第三次握手："></a>第三次握手：</h5><p>确认成功后，向服务器发送确认，确认报文段ACK置为1，确认号ack=y+1，下一个数据的序号seq=x+1,发送完毕后，进入连接状态。</p>
+<h3 id="SYN攻击"><a href="#SYN攻击" class="headerlink" title="SYN攻击"></a>SYN攻击</h3><p>SYN攻击就是在“攻击客户端”在短时间内伪造大量不存在的IP地址，向服务器不断的发送syn包，服务器回复确认，等待客户端的确认，但由于客户端地址是不存在的，服务器需要不断重发直到超时，这些伪造的SYN包将长时间占用未连接队列。正常的SYN被丢弃，目标系统运行缓慢，严重导致网络堵塞。</p>
+<h3 id="思考：为什么要进行三次握手？？？"><a href="#思考：为什么要进行三次握手？？？" class="headerlink" title="思考：为什么要进行三次握手？？？"></a>思考：为什么要进行三次握手？？？</h3><p>因为当客户端向服务端请求连接时，因为网络延误问题，以致于连接释放后的某个时间到达，但此时服务器并不知道，于是向客户端发送确认报文段，并创建连接。导致浪费服务端的资源。所以，需要客户端在再次向服务端发送确认。</p>
+<h4 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4><p><img src="https://note.youdao.com/yws/public/resource/b093a926bd1f91621e567c25e43db992/xmlnote/D43F0BF61A424119ADA3711E5AD58E46/3158" alt="image"><br>由于TCP是全双工的，因此，每个方向都需要单独关闭。</p>
+<h5 id="第一次挥手："><a href="#第一次挥手：" class="headerlink" title="第一次挥手："></a>第一次挥手：</h5><p>客户端发送一个FIN，用来关闭客户端到服务器的传送，这时客户端进入FIN-WAIT-1(终止等待1)的状态。</p>
+<h5 id="第二次挥手："><a href="#第二次挥手：" class="headerlink" title="第二次挥手："></a>第二次挥手：</h5><p>服务器收到FIN后，发送一个ACK到客户端，确认序号为收到的序号加1(和SYN相同)。这时客户端到服务器的连接就释放了，TCP处于办关闭状态。</p>
+<h5 id="第三次挥手："><a href="#第三次挥手：" class="headerlink" title="第三次挥手："></a>第三次挥手：</h5><p>释放服务器到客户端的连接，必须使报文段FIN=1，确认ACK=1，服务器的序号seq=w，必须重复上次已发送的ack=u+1,这时，服务器就进入LAST-ACK(最后确认状态)，等到客户端的确认。</p>
+<h5 id="第四次挥手："><a href="#第四次挥手：" class="headerlink" title="第四次挥手："></a>第四次挥手：</h5><p>客户端发出确认，置ACK=1，seq=u+1(因为前面FIN报文段已经消耗掉一个序号)，确认号ack=w+1,然后进入到TIME-WAIT(时间等待状态)。</p>
+<h2 id="面试总结："><a href="#面试总结：" class="headerlink" title="面试总结："></a>面试总结：</h2><h3 id="1-TCP协议和UDP协议的区别是什么？"><a href="#1-TCP协议和UDP协议的区别是什么？" class="headerlink" title="1.TCP协议和UDP协议的区别是什么？"></a>1.TCP协议和UDP协议的区别是什么？</h3><ul>
+<li style="list-style: none"><input type="checkbox"> TCP是面向连接的，UDP是面向无连接的。</li>
+<li style="list-style: none"><input type="checkbox"> TCP协议保证数据按序发送，按序到达，提供超时重传保证可靠性，但是UDP不保证有序性，也不保证准确到达，只能尽自己最大的努力发送数据。</li>
+<li style="list-style: none"><input type="checkbox"> TCP协议所需资源多，首部需要20个字节，而UDP只需要8个字节。</li>
+<li style="list-style: none"><input type="checkbox"> TCP有流量控制和拥塞控制，而UDP没有，网络拥堵不会影响发送端的效率。</li>
+<li style="list-style: none"><input type="checkbox"> TCP是一对一的，而UDP支持一对一，一对多，多对多通信。</li>
+<li style="list-style: none"><input type="checkbox"> TCP是面向字节流的服务，UDP是面向报文的服务。<h3 id="2-TCP连接和终止过程-如上图描述，三次握手，四次挥手"><a href="#2-TCP连接和终止过程-如上图描述，三次握手，四次挥手" class="headerlink" title="2.TCP连接和终止过程(如上图描述，三次握手，四次挥手)"></a>2.TCP连接和终止过程(如上图描述，三次握手，四次挥手)</h3><h3 id="3-三次握手时，发送方再次确认的必要性？"><a href="#3-三次握手时，发送方再次确认的必要性？" class="headerlink" title="3.三次握手时，发送方再次确认的必要性？"></a>3.三次握手时，发送方再次确认的必要性？</h3>主要是防止已失效的连接请求报文段到达服务器，因而发送错误，浪费资源。<h3 id="4-四次挥手时，等待2MSL的意义？"><a href="#4-四次挥手时，等待2MSL的意义？" class="headerlink" title="4.四次挥手时，等待2MSL的意义？"></a>4.四次挥手时，等待2MSL的意义？</h3></li>
+<li style="list-style: none"><input type="checkbox"> 第一，为了保证最后一个ACK确认能够发送到对方。这个报文段可能会丢失，如果丢失，将会超时重传再次发送。</li>
+<li style="list-style: none"><input type="checkbox"> 第二，就是防止上面提到的已失效的连接请求报文段出现在本连接中，A在发送完最有一个ACK报文段后，再经过2MSL，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+	<div>
+	 
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+
+	 
+	</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机网络/" rel="tag"><i class="fa fa-tag"></i> 计算机网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/03/线段树/" rel="next" title="线段树">
+                <i class="fa fa-chevron-left"></i> 线段树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTk2Ni8xODUxMg"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+	
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="王恒">
+            
+              <p class="site-author-name" itemprop="name">王恒</p>
+              <p class="site-description motion-element" itemprop="description">用来记录平时学习的博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSI参考模型"><span class="nav-number">1.</span> <span class="nav-text">OSI参考模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP协议"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#TCP-IP只是协议群的统称，它是网际协议族。"><span class="nav-number">2.0.0.0.0.1.</span> <span class="nav-text">TCP/IP只是协议群的统称，它是网际协议族。</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层"><span class="nav-number">2.1.</span> <span class="nav-text">传输层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP"><span class="nav-number">2.1.1.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP协议头格式"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">TCP协议头格式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#源端口和目的端口："><span class="nav-number">2.1.1.1.1.</span> <span class="nav-text">源端口和目的端口：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#序号seq"><span class="nav-number">2.1.1.1.2.</span> <span class="nav-text">序号seq:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#确认号ack"><span class="nav-number">2.1.1.1.3.</span> <span class="nav-text">确认号ack:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#确认ACK"><span class="nav-number">2.1.1.1.4.</span> <span class="nav-text">确认ACK:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#同步SYN："><span class="nav-number">2.1.1.1.5.</span> <span class="nav-text">同步SYN：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#终止FIN："><span class="nav-number">2.1.1.1.6.</span> <span class="nav-text">终止FIN：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三次握手过程"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">三次握手过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一次握手："><span class="nav-number">2.1.1.2.1.</span> <span class="nav-text">第一次握手：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二层次握手："><span class="nav-number">2.1.1.2.2.</span> <span class="nav-text">第二层次握手：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三次握手："><span class="nav-number">2.1.1.2.3.</span> <span class="nav-text">第三次握手：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SYN攻击"><span class="nav-number">2.1.2.</span> <span class="nav-text">SYN攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思考：为什么要进行三次握手？？？"><span class="nav-number">2.1.3.</span> <span class="nav-text">思考：为什么要进行三次握手？？？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#四次挥手"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一次挥手："><span class="nav-number">2.1.3.1.1.</span> <span class="nav-text">第一次挥手：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二次挥手："><span class="nav-number">2.1.3.1.2.</span> <span class="nav-text">第二次挥手：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三次挥手："><span class="nav-number">2.1.3.1.3.</span> <span class="nav-text">第三次挥手：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第四次挥手："><span class="nav-number">2.1.3.1.4.</span> <span class="nav-text">第四次挥手：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试总结："><span class="nav-number">2.2.</span> <span class="nav-text">面试总结：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-TCP协议和UDP协议的区别是什么？"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.TCP协议和UDP协议的区别是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-TCP连接和终止过程-如上图描述，三次握手，四次挥手"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.TCP连接和终止过程(如上图描述，三次握手，四次挥手)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-三次握手时，发送方再次确认的必要性？"><span class="nav-number">2.2.3.</span> <span class="nav-text">3.三次握手时，发送方再次确认的必要性？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-四次挥手时，等待2MSL的意义？"><span class="nav-number">2.2.4.</span> <span class="nav-text">4.四次挥手时，等待2MSL的意义？</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王恒</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+<!-- 新增访客统计代码 -->
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<!-- 新增访客统计代码 END-->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共18.3k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kJHnuI6UTmeaam41s13QmRrm-gzGzoHsz", "0hjNdXteouwI5rDyFUCLT4KT");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>
