@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="M19emfPg1s">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据库,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="检索数据一：基本查询数据1. 检索所有列==SELECT * FROM &amp;lt;表名&amp;gt;;== SELECT是关键字，表示将要执行一个查询* (通配符)表示所有列，FROM表示从哪个表查询。2. 检索单个列或多个列==SELECT 列1，列2 FROM &amp;lt;表名&amp;gt;;== 返回指定的列，也可以给每个列起一个别名，语法是SELECT 列1 别名1，列2 别名2，… FROM …3. 检索">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql之检索数据">
+<meta property="og:url" content="http://yoursite.com/2019/01/19/Mysql之检索数据/index.html">
+<meta property="og:site_name" content="隔壁老王专属博客">
+<meta property="og:description" content="检索数据一：基本查询数据1. 检索所有列==SELECT * FROM &amp;lt;表名&amp;gt;;== SELECT是关键字，表示将要执行一个查询* (通配符)表示所有列，FROM表示从哪个表查询。2. 检索单个列或多个列==SELECT 列1，列2 FROM &amp;lt;表名&amp;gt;;== 返回指定的列，也可以给每个列起一个别名，语法是SELECT 列1 别名1，列2 别名2，… FROM …3. 检索">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/21db9f6285ea084609e3dc9836c2586d/xmlnote/5F2E2DBDF55B4D2295384F0737EE2AFC/4286">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/21db9f6285ea084609e3dc9836c2586d/xmlnote/13E49DE9766D4879B25091C3780DD029/4432">
+<meta property="og:updated_time" content="2019-01-19T09:01:33.895Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql之检索数据">
+<meta name="twitter:description" content="检索数据一：基本查询数据1. 检索所有列==SELECT * FROM &amp;lt;表名&amp;gt;;== SELECT是关键字，表示将要执行一个查询* (通配符)表示所有列，FROM表示从哪个表查询。2. 检索单个列或多个列==SELECT 列1，列2 FROM &amp;lt;表名&amp;gt;;== 返回指定的列，也可以给每个列起一个别名，语法是SELECT 列1 别名1，列2 别名2，… FROM …3. 检索">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/21db9f6285ea084609e3dc9836c2586d/xmlnote/5F2E2DBDF55B4D2295384F0737EE2AFC/4286">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/19/Mysql之检索数据/">
+
+
+
+
+
+  <title>Mysql之检索数据 | 隔壁老王专属博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">隔壁老王专属博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人学习博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/19/Mysql之检索数据/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王恒">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="隔壁老王专属博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mysql之检索数据</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-19T16:49:22+08:00">
+                2019-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/01/19/Mysql之检索数据/" class="leancloud_visitors" data-flag-title="Mysql之检索数据">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h1><h2 id="一：基本查询数据"><a href="#一：基本查询数据" class="headerlink" title="一：基本查询数据"></a>一：基本查询数据</h2><h4 id="1-检索所有列"><a href="#1-检索所有列" class="headerlink" title="1. 检索所有列"></a>1. 检索所有列</h4><p>==SELECT * FROM &lt;表名&gt;;==</p>
+<h6 id="SELECT是关键字，表示将要执行一个查询-通配符-表示所有列，FROM表示从哪个表查询。"><a href="#SELECT是关键字，表示将要执行一个查询-通配符-表示所有列，FROM表示从哪个表查询。" class="headerlink" title="SELECT是关键字，表示将要执行一个查询* (通配符)表示所有列，FROM表示从哪个表查询。"></a>SELECT是关键字，表示将要执行一个查询* (通配符)表示所有列，FROM表示从哪个表查询。</h6><h4 id="2-检索单个列或多个列"><a href="#2-检索单个列或多个列" class="headerlink" title="2. 检索单个列或多个列"></a>2. 检索单个列或多个列</h4><p>==SELECT 列1，列2 FROM &lt;表名&gt;;==</p>
+<h6 id="返回指定的列，也可以给每个列起一个别名，语法是SELECT-列1-别名1，列2-别名2，…-FROM-…"><a href="#返回指定的列，也可以给每个列起一个别名，语法是SELECT-列1-别名1，列2-别名2，…-FROM-…" class="headerlink" title="返回指定的列，也可以给每个列起一个别名，语法是SELECT 列1 别名1，列2 别名2，… FROM …"></a>返回指定的列，也可以给每个列起一个别名，语法是SELECT 列1 别名1，列2 别名2，… FROM …</h6><h4 id="3-检索不同的值"><a href="#3-检索不同的值" class="headerlink" title="3. 检索不同的值"></a>3. 检索不同的值</h4><p>==SELECT DISTINCT 列名1 FROM &lt;表名&gt;;==</p>
+<h6 id="distanct关键字表示只返回不同的值。"><a href="#distanct关键字表示只返回不同的值。" class="headerlink" title="distanct关键字表示只返回不同的值。"></a>distanct关键字表示只返回不同的值。</h6><h3 id="总结：基本查询就是使用SELECT、FROM结合DISTINCT进行查询。"><a href="#总结：基本查询就是使用SELECT、FROM结合DISTINCT进行查询。" class="headerlink" title="总结：基本查询就是使用SELECT、FROM结合DISTINCT进行查询。"></a>总结：基本查询就是使用SELECT、FROM结合DISTINCT进行查询。</h3><h2 id="二：排序查询数据"><a href="#二：排序查询数据" class="headerlink" title="二：排序查询数据"></a>二：排序查询数据</h2><h4 id="1-按列进行排序检索"><a href="#1-按列进行排序检索" class="headerlink" title="1. 按列进行排序检索"></a>1. 按列进行排序检索</h4><p>==SELECT * FROM &lt;表名&gt; ORDER BY &lt;列名&gt;;==</p>
+<h6 id="ORDER-BY-子句取一个列或多个列的名字进行排序。多列排序时，只有第一个列相同时，才会通过第二列进行排序。"><a href="#ORDER-BY-子句取一个列或多个列的名字进行排序。多列排序时，只有第一个列相同时，才会通过第二列进行排序。" class="headerlink" title="ORDER BY 子句取一个列或多个列的名字进行排序。多列排序时，只有第一个列相同时，才会通过第二列进行排序。"></a>ORDER BY 子句取一个列或多个列的名字进行排序。多列排序时，只有第一个列相同时，才会通过第二列进行排序。</h6><h4 id="2-按列位置排序检索"><a href="#2-按列位置排序检索" class="headerlink" title="2. 按列位置排序检索"></a>2. 按列位置排序检索</h4><p>==SELECT * FROM &lt;表名&gt; ORDER BY 5;==</p>
+<h6 id="只需将列名换成列的相对位置即可。"><a href="#只需将列名换成列的相对位置即可。" class="headerlink" title="只需将列名换成列的相对位置即可。"></a>只需将列名换成列的相对位置即可。</h6><h4 id="3-按列进行排序检索并指定方向"><a href="#3-按列进行排序检索并指定方向" class="headerlink" title="3. 按列进行排序检索并指定方向"></a>3. 按列进行排序检索并指定方向</h4><p>==SELECT * FROM &lt;表名&gt; ORDER BY &lt;列名&gt; DESC;==</p>
+<h6 id="默认排序方向为升序，使用DESC为降序。当使用ORDER-BY-score-DESC，name-时，只对score进行降序，而当score相同时，name使用升序。"><a href="#默认排序方向为升序，使用DESC为降序。当使用ORDER-BY-score-DESC，name-时，只对score进行降序，而当score相同时，name使用升序。" class="headerlink" title="默认排序方向为升序，使用DESC为降序。当使用ORDER BY score DESC，name 时，只对score进行降序，而当score相同时，name使用升序。"></a>默认排序方向为升序，使用DESC为降序。当使用ORDER BY score DESC，name 时，只对score进行降序，而当score相同时，name使用升序。</h6><h3 id="总结：排序检索就是使用ORDER-BY子句进行排序检索，默认为升序，使用DESC为降序。"><a href="#总结：排序检索就是使用ORDER-BY子句进行排序检索，默认为升序，使用DESC为降序。" class="headerlink" title="总结：排序检索就是使用ORDER BY子句进行排序检索，默认为升序，使用DESC为降序。"></a>总结：排序检索就是使用ORDER BY子句进行排序检索，默认为升序，使用DESC为降序。</h3><h2 id="三：条件查询-过滤查询"><a href="#三：条件查询-过滤查询" class="headerlink" title="三：条件查询(过滤查询)"></a>三：条件查询(过滤查询)</h2><h3 id="注意：在同时使用where子句和order-by子句时，应该让order-by子句位置where子句后，否则将会发生错误。"><a href="#注意：在同时使用where子句和order-by子句时，应该让order-by子句位置where子句后，否则将会发生错误。" class="headerlink" title="注意：在同时使用where子句和order by子句时，应该让order by子句位置where子句后，否则将会发生错误。"></a>注意：在同时使用where子句和order by子句时，应该让order by子句位置where子句后，否则将会发生错误。</h3><h3 id="WHERE子句操作符"><a href="#WHERE子句操作符" class="headerlink" title="WHERE子句操作符"></a>WHERE子句操作符</h3><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>说明</th>
+<th>操作符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>等于</td>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&lt;&gt;</td>
+<td>不等于</td>
+<td>&gt;=</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>！=</td>
+<td>不等于</td>
+<td>!&gt;</td>
+<td>不大于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+<td>BETWEEN</td>
+<td>在指定的两个值之间</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+<td>IS NULL</td>
+<td>为NULL值</td>
+</tr>
+<tr>
+<td>！&lt;</td>
+<td>不小于</td>
+<td>NOT</td>
+<td>例：NOT id = 2；表示不符合id等于2的数据</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-按条件查询"><a href="#1-按条件查询" class="headerlink" title="1. 按条件查询"></a>1. 按条件查询</h4><p>==SELECT * FROM &lt;表名&gt; where score=80;==</p>
+<h6 id="检索出score等于80的所有数据。"><a href="#检索出score等于80的所有数据。" class="headerlink" title="检索出score等于80的所有数据。"></a>检索出score等于80的所有数据。</h6><h4 id="2-AND条件查询"><a href="#2-AND条件查询" class="headerlink" title="2. AND条件查询"></a>2. AND条件查询</h4><p>==SELECT * FROM &lt;表名&gt; where score=80 AND gender=’M’;==</p>
+<h6 id="也可以用-lt-条件一-gt-AND-lt-条件二-gt-表示‘与’"><a href="#也可以用-lt-条件一-gt-AND-lt-条件二-gt-表示‘与’" class="headerlink" title="也可以用 ==&lt;条件一&gt; AND &lt;条件二&gt;== 表示‘与’"></a>也可以用 ==&lt;条件一&gt; AND &lt;条件二&gt;== 表示‘与’</h6><h4 id="3-OR条件查询"><a href="#3-OR条件查询" class="headerlink" title="3. OR条件查询"></a>3. OR条件查询</h4><p>==SELECT * FROM &lt;表名&gt; where score=80 OR gender=’M’;==</p>
+<h6 id="也可以用-lt-条件一-gt-OR-lt-条件二-gt-表示‘或’"><a href="#也可以用-lt-条件一-gt-OR-lt-条件二-gt-表示‘或’" class="headerlink" title="也可以用 ==&lt;条件一&gt; OR &lt;条件二&gt;== 表示‘或’"></a>也可以用 ==&lt;条件一&gt; OR &lt;条件二&gt;== 表示‘或’</h6><h4 id="4-IN条件查询"><a href="#4-IN条件查询" class="headerlink" title="4. IN条件查询"></a>4. IN条件查询</h4><p>==SELECT * FROM &lt;表名&gt; where score IN (10,90);==</p>
+<h6 id="IN-x1-x2-表示socre的范围"><a href="#IN-x1-x2-表示socre的范围" class="headerlink" title="IN(x1,x2)表示socre的范围"></a>IN(x1,x2)表示socre的范围</h6><h4 id="5-BETWEEN条件查询"><a href="#5-BETWEEN条件查询" class="headerlink" title="5. BETWEEN条件查询"></a>5. BETWEEN条件查询</h4><p>==SELECT * FROM &lt;表名&gt; WHERE score BETWEEN 10 AND 80;==</p>
+<h6 id="使用-BETWEEN-关键字时，必须制定两个值，所需范围的低端值和高端值，必须使用-AND-分隔开。"><a href="#使用-BETWEEN-关键字时，必须制定两个值，所需范围的低端值和高端值，必须使用-AND-分隔开。" class="headerlink" title="使用==BETWEEN==关键字时，必须制定两个值，所需范围的低端值和高端值，必须使用==AND==分隔开。"></a>使用==BETWEEN==关键字时，必须制定两个值，所需范围的低端值和高端值，必须使用==AND==分隔开。</h6><h4 id="6-NOT条件查询"><a href="#6-NOT条件查询" class="headerlink" title="6. NOT条件查询"></a>6. NOT条件查询</h4><p>==SELECT * FROM &lt;表名&gt; where NOT score=80;==</p>
+<h6 id="检索score不为80的所有数据。"><a href="#检索score不为80的所有数据。" class="headerlink" title="检索score不为80的所有数据。"></a>检索score不为80的所有数据。</h6><h3 id="7-使用LIKE过滤查询"><a href="#7-使用LIKE过滤查询" class="headerlink" title="7. 使用LIKE过滤查询"></a>7. 使用LIKE过滤查询</h3><ul>
+<li style="list-style: none"><input type="checkbox"> 通配符百分号(%)表示任意字符出现任意次数(包括0)。</li>
+<li style="list-style: none"><input type="checkbox"> 通配符下划线(_)表示任意字符出现一次。</li>
+<li style="list-style: none"><input type="checkbox"> 通配符方括号([])表示指定字符集。(匹配[]内任意一个字符)</li>
+<li>==SELECT * FROM &lt;表名&gt; WHERE name LIKE ‘a%’;==<h6 id="使用LIKE和通配符进行过滤查询。例’a-’表示以a开头的所有数据。"><a href="#使用LIKE和通配符进行过滤查询。例’a-’表示以a开头的所有数据。" class="headerlink" title="使用LIKE和通配符进行过滤查询。例’a%’表示以a开头的所有数据。"></a>使用LIKE和通配符进行过滤查询。例’a%’表示以a开头的所有数据。</h6>==SELECT * FROM &lt;表名&gt; WHERE name LIKE ‘[ab]%’;==<h6 id="表示以a或者b开头的数据。"><a href="#表示以a或者b开头的数据。" class="headerlink" title="表示以a或者b开头的数据。"></a>表示以a或者b开头的数据。</h6><h2 id="！！！注意：优先级关系：-gt-AND-gt-OR"><a href="#！！！注意：优先级关系：-gt-AND-gt-OR" class="headerlink" title="！！！注意：优先级关系：!=&gt;AND&gt;OR"></a>！！！注意：优先级关系：!=&gt;AND&gt;OR</h2></li>
+</ul>
+<h3 id="总结：条件查询就是如何使用AND、OR、IN、NOT操作符结合WHERE进行查询。"><a href="#总结：条件查询就是如何使用AND、OR、IN、NOT操作符结合WHERE进行查询。" class="headerlink" title="总结：条件查询就是如何使用AND、OR、IN、NOT操作符结合WHERE进行查询。"></a>总结：条件查询就是如何使用AND、OR、IN、NOT操作符结合WHERE进行查询。</h3><h2 id="四：分页查询"><a href="#四：分页查询" class="headerlink" title="四：分页查询"></a>四：分页查询</h2><h4 id="1-限制行数查询"><a href="#1-限制行数查询" class="headerlink" title="1. 限制行数查询"></a>1. 限制行数查询</h4><p>==SELECT * FROM &lt;表名&gt; LIMIT &lt;行数&gt; OFFSET &lt;起始行&gt;;==</p>
+<h6 id="LIMIT关键字表示检索的行数，OFFSET关键字表示从哪一行开始。-不包括开始的哪一行，为开区间。例上，从6行开始"><a href="#LIMIT关键字表示检索的行数，OFFSET关键字表示从哪一行开始。-不包括开始的哪一行，为开区间。例上，从6行开始" class="headerlink" title="LIMIT关键字表示检索的行数，OFFSET关键字表示从哪一行开始。(不包括开始的哪一行，为开区间。例上，从6行开始)"></a>LIMIT关键字表示检索的行数，OFFSET关键字表示从哪一行开始。(不包括开始的哪一行，为开区间。例上，从6行开始)</h6><p>由于检索结果集过大，需要分页进行展示。</p>
+<p>分页查询的关键是，首先要确定每页显示的数量<strong>pageSize</strong>，然后是当前页的索引pageIndex。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> LIMIT总是设定为<strong>pageSize</strong>。</li>
+<li style="list-style: none"><input type="checkbox"> OFFSET计算公式为<strong>pageSize * (pageIndex - 1)</strong>。<h3 id="总结：分页查询使用LIMIT-lt-查询的行数-gt-OFFSET-lt-起始的行数-gt-进行查询，查询的计算公式如上。"><a href="#总结：分页查询使用LIMIT-lt-查询的行数-gt-OFFSET-lt-起始的行数-gt-进行查询，查询的计算公式如上。" class="headerlink" title="总结：分页查询使用LIMIT&lt;查询的行数&gt; OFFSET&lt;起始的行数&gt;进行查询，查询的计算公式如上。"></a>总结：分页查询使用LIMIT&lt;查询的行数&gt; OFFSET&lt;起始的行数&gt;进行查询，查询的计算公式如上。</h3><h2 id="五：聚合查询"><a href="#五：聚合查询" class="headerlink" title="五：聚合查询"></a>五：聚合查询</h2></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COUNT()</td>
+<td>计算行的个数</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>计算某一列的合计值，该列必须为数值</td>
+</tr>
+<tr>
+<td>AVG</td>
+<td>计算某一列的平均值，该列必须为数值</td>
+</tr>
+<tr>
+<td>MAX</td>
+<td>计算某一列的最大值</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>计算某一列的最小值</td>
+</tr>
+<tr>
+<td>CONCAT</td>
+<td>将多个列拼接在一起</td>
+</tr>
+</tbody>
+</table>
+<p>如果where条件没有匹配到任何行，这些函数将返回null。</p>
+<h4 id="1-聚合查询示例："><a href="#1-聚合查询示例：" class="headerlink" title="1. 聚合查询示例："></a>1. 聚合查询示例：</h4><p>==SELECT COUNT(*) num FROM students;==</p>
+<h6 id="查询学生的总个数"><a href="#查询学生的总个数" class="headerlink" title="查询学生的总个数"></a>查询学生的总个数</h6><h4 id="2-拼接字段"><a href="#2-拼接字段" class="headerlink" title="2.拼接字段"></a>2.拼接字段</h4><p>使用CONCAT函数将多个列拼接在一起</p>
+<p>==SELECT CONCAT(NAME,’(‘,score,’)’) FROM students;==<br><img src="https://note.youdao.com/yws/public/resource/21db9f6285ea084609e3dc9836c2586d/xmlnote/5F2E2DBDF55B4D2295384F0737EE2AFC/4286" alt="image"></p>
+<h2 id="六：-分组查询"><a href="#六：-分组查询" class="headerlink" title="六： 分组查询"></a>六： 分组查询</h2><h3 id="重点：-子句执行顺序：WHERE-gt-GROUP-BY-gt-HAVING-gt-ORDER-BY"><a href="#重点：-子句执行顺序：WHERE-gt-GROUP-BY-gt-HAVING-gt-ORDER-BY" class="headerlink" title="重点： 子句执行顺序：WHERE &gt; GROUP BY &gt; HAVING &gt; ORDER BY"></a>重点： 子句执行顺序：WHERE &gt; GROUP BY &gt; HAVING &gt; ORDER BY</h3><h4 id="1-GROUP-BY-子句"><a href="#1-GROUP-BY-子句" class="headerlink" title="1. GROUP BY 子句"></a>1. GROUP BY 子句</h4><p>==SELECT class_id, COUNT(*) num FROM students GROUP BY class_id;==</p>
+<h6 id="GROUP-BY子句按照class-id先进行分组，然后再分别计算总和。"><a href="#GROUP-BY子句按照class-id先进行分组，然后再分别计算总和。" class="headerlink" title="GROUP BY子句按照class_id先进行分组，然后再分别计算总和。"></a>GROUP BY子句按照class_id先进行分组，然后再分别计算总和。</h6><h4 id="2-HAVING-子句"><a href="#2-HAVING-子句" class="headerlink" title="2. HAVING 子句"></a>2. HAVING 子句</h4><p>WHERE过滤指定的行，而HAVING支持所有WHERE的功能，且支持过滤<strong>分组</strong></p>
+<p>==SELECT COUNT(<em>) FROM students GROUP BY class_id HAVING COUNT(</em>)&gt;=2;==</p>
+<h6 id="将学生表根据班级分组，并且过滤出班级里学生数大于2的班级。"><a href="#将学生表根据班级分组，并且过滤出班级里学生数大于2的班级。" class="headerlink" title="将学生表根据班级分组，并且过滤出班级里学生数大于2的班级。"></a>将学生表根据班级分组，并且过滤出班级里学生数大于2的班级。</h6><h2 id="七：多表查询-联结查询"><a href="#七：多表查询-联结查询" class="headerlink" title="七：多表查询(联结查询)"></a>七：多表查询(联结查询)</h2><p>SELECT查询不但可以从一张表查询数据，还可以从多张表同时查询数据。</p>
+<h3 id="1-多表查询"><a href="#1-多表查询" class="headerlink" title="1.多表查询"></a>1.多表查询</h3><p>==SELECT * FROM &lt;表1&gt; &lt;表2&gt;==</p>
+<h6 id="多表查询产生笛卡尔积，必须使用WHERE子句过滤检索出想要的数据。联结查询是SQL中农一个最重要，最强大的特性。"><a href="#多表查询产生笛卡尔积，必须使用WHERE子句过滤检索出想要的数据。联结查询是SQL中农一个最重要，最强大的特性。" class="headerlink" title="多表查询产生笛卡尔积，必须使用WHERE子句过滤检索出想要的数据。联结查询是SQL中农一个最重要，最强大的特性。"></a>多表查询产生笛卡尔积，必须使用WHERE子句过滤检索出想要的数据。联结查询是SQL中农一个最重要，最强大的特性。</h6><h2 id="八：连接查询"><a href="#八：连接查询" class="headerlink" title="八：连接查询"></a>八：连接查询</h2><h4 id="1-内连接"><a href="#1-内连接" class="headerlink" title="1.内连接"></a>1.内连接</h4><p>SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score</p>
+<p>FROM students s</p>
+<p><strong>INNER JOIN</strong> classes c</p>
+<p><strong>ON</strong> s.class_id = c.id;</p>
+<h6 id="FROM-lt-表一-gt-先确定主表，INNER-JOIN-lt-表二-gt-再确定需要连接的表，ON-lt-条件-gt-确定条件。-INNER-JOIN-连接只返回同时存在于两张表的行数据。"><a href="#FROM-lt-表一-gt-先确定主表，INNER-JOIN-lt-表二-gt-再确定需要连接的表，ON-lt-条件-gt-确定条件。-INNER-JOIN-连接只返回同时存在于两张表的行数据。" class="headerlink" title="FROM &lt;表一&gt;先确定主表，INNER JOIN &lt;表二&gt;再确定需要连接的表，ON &lt;条件&gt; 确定条件。 INNER JOIN 连接只返回同时存在于两张表的行数据。"></a>FROM &lt;表一&gt;先确定主表，INNER JOIN &lt;表二&gt;再确定需要连接的表，ON &lt;条件&gt; 确定条件。 INNER JOIN 连接只返回同时存在于两张表的行数据。</h6><h4 id="2-外连接"><a href="#2-外连接" class="headerlink" title="2.外连接"></a>2.外连接</h4><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FROM …LEFT OUTER JOIN</td>
+<td>返回左表都存在的行，右表中不存在的则填充NULL</td>
+</tr>
+<tr>
+<td> FROM …RIGHT OUTER JOIN</td>
+<td>返回右表中的所有行，左表中不存在，则用NULL来填充</td>
+</tr>
+<tr>
+<td> FROM …RIGHT OUTER JOIN</td>
+<td>会把两张表中所有记录全部选择出来，自动把把对方不存在的填充为NULL</td>
+</tr>
+</tbody>
+</table>
+<p> 如图所示:<br> <img src="https://note.youdao.com/yws/public/resource/21db9f6285ea084609e3dc9836c2586d/xmlnote/13E49DE9766D4879B25091C3780DD029/4432" alt="image"></p>
+<h2 id="九：组合查询"><a href="#九：组合查询" class="headerlink" title="九：组合查询"></a>九：组合查询</h2><p>主要有两种情况需要使用组合查询：</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 在一个查询中从不同的表返回结构数据。</li>
+<li style="list-style: none"><input type="checkbox"> 对一个表执行多个查询，按一个查询返回数据。</li>
+</ul>
+<p>组合查询使用UNION连接多个SELECT语句。语法为：<strong>SELECT…. UNION SELECT…</strong></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 在对同一个表进行组合查询时，使用UNION和WHERE子句中使用OR相同。</li>
+<li style="list-style: none"><input type="checkbox"> UNION中每个查询的必须包含相同的列、表达式、聚集函数。</li>
+<li style="list-style: none"><input type="checkbox"> UNION从查询结果集中自动去除了重复的行。如果不想去除，则使用UNION ALL。</li>
+<li style="list-style: none"><input type="checkbox"> 使用UNION组合查询时，如果使用ORDER BY子句排序，则必须放在最后一条SELECT中。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+	<div>
+	 
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+
+	 
+	</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/19/Mysql入门/" rel="next" title="Mysql入门">
+                <i class="fa fa-chevron-left"></i> Mysql入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/19/Mysql数据处理函数/" rel="prev" title="Mysql数据处理函数">
+                Mysql数据处理函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTk2Ni8xODUxMg"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+	
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="王恒">
+            
+              <p class="site-author-name" itemprop="name">王恒</p>
+              <p class="site-description motion-element" itemprop="description">用来记录平时学习的博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#检索数据"><span class="nav-number">1.</span> <span class="nav-text">检索数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一：基本查询数据"><span class="nav-number">1.1.</span> <span class="nav-text">一：基本查询数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-检索所有列"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1. 检索所有列</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#SELECT是关键字，表示将要执行一个查询-通配符-表示所有列，FROM表示从哪个表查询。"><span class="nav-number">1.1.0.1.0.1.</span> <span class="nav-text">SELECT是关键字，表示将要执行一个查询* (通配符)表示所有列，FROM表示从哪个表查询。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-检索单个列或多个列"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">2. 检索单个列或多个列</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#返回指定的列，也可以给每个列起一个别名，语法是SELECT-列1-别名1，列2-别名2，…-FROM-…"><span class="nav-number">1.1.0.2.0.1.</span> <span class="nav-text">返回指定的列，也可以给每个列起一个别名，语法是SELECT 列1 别名1，列2 别名2，… FROM …</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-检索不同的值"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">3. 检索不同的值</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#distanct关键字表示只返回不同的值。"><span class="nav-number">1.1.0.3.0.1.</span> <span class="nav-text">distanct关键字表示只返回不同的值。</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#总结：基本查询就是使用SELECT、FROM结合DISTINCT进行查询。"><span class="nav-number">1.1.1.</span> <span class="nav-text">总结：基本查询就是使用SELECT、FROM结合DISTINCT进行查询。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二：排序查询数据"><span class="nav-number">1.2.</span> <span class="nav-text">二：排序查询数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-按列进行排序检索"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1. 按列进行排序检索</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ORDER-BY-子句取一个列或多个列的名字进行排序。多列排序时，只有第一个列相同时，才会通过第二列进行排序。"><span class="nav-number">1.2.0.1.0.1.</span> <span class="nav-text">ORDER BY 子句取一个列或多个列的名字进行排序。多列排序时，只有第一个列相同时，才会通过第二列进行排序。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-按列位置排序检索"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">2. 按列位置排序检索</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#只需将列名换成列的相对位置即可。"><span class="nav-number">1.2.0.2.0.1.</span> <span class="nav-text">只需将列名换成列的相对位置即可。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-按列进行排序检索并指定方向"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">3. 按列进行排序检索并指定方向</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#默认排序方向为升序，使用DESC为降序。当使用ORDER-BY-score-DESC，name-时，只对score进行降序，而当score相同时，name使用升序。"><span class="nav-number">1.2.0.3.0.1.</span> <span class="nav-text">默认排序方向为升序，使用DESC为降序。当使用ORDER BY score DESC，name 时，只对score进行降序，而当score相同时，name使用升序。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结：排序检索就是使用ORDER-BY子句进行排序检索，默认为升序，使用DESC为降序。"><span class="nav-number">1.2.1.</span> <span class="nav-text">总结：排序检索就是使用ORDER BY子句进行排序检索，默认为升序，使用DESC为降序。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三：条件查询-过滤查询"><span class="nav-number">1.3.</span> <span class="nav-text">三：条件查询(过滤查询)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意：在同时使用where子句和order-by子句时，应该让order-by子句位置where子句后，否则将会发生错误。"><span class="nav-number">1.3.1.</span> <span class="nav-text">注意：在同时使用where子句和order by子句时，应该让order by子句位置where子句后，否则将会发生错误。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WHERE子句操作符"><span class="nav-number">1.3.2.</span> <span class="nav-text">WHERE子句操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-按条件查询"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">1. 按条件查询</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#检索出score等于80的所有数据。"><span class="nav-number">1.3.2.1.0.1.</span> <span class="nav-text">检索出score等于80的所有数据。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-AND条件查询"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2. AND条件查询</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#也可以用-lt-条件一-gt-AND-lt-条件二-gt-表示‘与’"><span class="nav-number">1.3.2.2.0.1.</span> <span class="nav-text">也可以用 ==&lt;条件一&gt; AND &lt;条件二&gt;== 表示‘与’</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-OR条件查询"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">3. OR条件查询</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#也可以用-lt-条件一-gt-OR-lt-条件二-gt-表示‘或’"><span class="nav-number">1.3.2.3.0.1.</span> <span class="nav-text">也可以用 ==&lt;条件一&gt; OR &lt;条件二&gt;== 表示‘或’</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-IN条件查询"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">4. IN条件查询</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#IN-x1-x2-表示socre的范围"><span class="nav-number">1.3.2.4.0.1.</span> <span class="nav-text">IN(x1,x2)表示socre的范围</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-BETWEEN条件查询"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">5. BETWEEN条件查询</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#使用-BETWEEN-关键字时，必须制定两个值，所需范围的低端值和高端值，必须使用-AND-分隔开。"><span class="nav-number">1.3.2.5.0.1.</span> <span class="nav-text">使用==BETWEEN==关键字时，必须制定两个值，所需范围的低端值和高端值，必须使用==AND==分隔开。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-NOT条件查询"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">6. NOT条件查询</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#检索score不为80的所有数据。"><span class="nav-number">1.3.2.6.0.1.</span> <span class="nav-text">检索score不为80的所有数据。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-使用LIKE过滤查询"><span class="nav-number">1.3.3.</span> <span class="nav-text">7. 使用LIKE过滤查询</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#使用LIKE和通配符进行过滤查询。例’a-’表示以a开头的所有数据。"><span class="nav-number">1.3.3.0.0.1.</span> <span class="nav-text">使用LIKE和通配符进行过滤查询。例’a%’表示以a开头的所有数据。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#表示以a或者b开头的数据。"><span class="nav-number">1.3.3.0.0.2.</span> <span class="nav-text">表示以a或者b开头的数据。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#！！！注意：优先级关系：-gt-AND-gt-OR"><span class="nav-number">1.4.</span> <span class="nav-text">！！！注意：优先级关系：!=&gt;AND&gt;OR</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结：条件查询就是如何使用AND、OR、IN、NOT操作符结合WHERE进行查询。"><span class="nav-number">1.4.1.</span> <span class="nav-text">总结：条件查询就是如何使用AND、OR、IN、NOT操作符结合WHERE进行查询。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四：分页查询"><span class="nav-number">1.5.</span> <span class="nav-text">四：分页查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-限制行数查询"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">1. 限制行数查询</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#LIMIT关键字表示检索的行数，OFFSET关键字表示从哪一行开始。-不包括开始的哪一行，为开区间。例上，从6行开始"><span class="nav-number">1.5.0.1.0.1.</span> <span class="nav-text">LIMIT关键字表示检索的行数，OFFSET关键字表示从哪一行开始。(不包括开始的哪一行，为开区间。例上，从6行开始)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结：分页查询使用LIMIT-lt-查询的行数-gt-OFFSET-lt-起始的行数-gt-进行查询，查询的计算公式如上。"><span class="nav-number">1.5.1.</span> <span class="nav-text">总结：分页查询使用LIMIT&lt;查询的行数&gt; OFFSET&lt;起始的行数&gt;进行查询，查询的计算公式如上。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五：聚合查询"><span class="nav-number">1.6.</span> <span class="nav-text">五：聚合查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-聚合查询示例："><span class="nav-number">1.6.0.1.</span> <span class="nav-text">1. 聚合查询示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#查询学生的总个数"><span class="nav-number">1.6.0.1.0.1.</span> <span class="nav-text">查询学生的总个数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-拼接字段"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">2.拼接字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六：-分组查询"><span class="nav-number">1.7.</span> <span class="nav-text">六： 分组查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重点：-子句执行顺序：WHERE-gt-GROUP-BY-gt-HAVING-gt-ORDER-BY"><span class="nav-number">1.7.1.</span> <span class="nav-text">重点： 子句执行顺序：WHERE &gt; GROUP BY &gt; HAVING &gt; ORDER BY</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-GROUP-BY-子句"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">1. GROUP BY 子句</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#GROUP-BY子句按照class-id先进行分组，然后再分别计算总和。"><span class="nav-number">1.7.1.1.0.1.</span> <span class="nav-text">GROUP BY子句按照class_id先进行分组，然后再分别计算总和。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-HAVING-子句"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">2. HAVING 子句</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#将学生表根据班级分组，并且过滤出班级里学生数大于2的班级。"><span class="nav-number">1.7.1.2.0.1.</span> <span class="nav-text">将学生表根据班级分组，并且过滤出班级里学生数大于2的班级。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七：多表查询-联结查询"><span class="nav-number">1.8.</span> <span class="nav-text">七：多表查询(联结查询)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-多表查询"><span class="nav-number">1.8.1.</span> <span class="nav-text">1.多表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#多表查询产生笛卡尔积，必须使用WHERE子句过滤检索出想要的数据。联结查询是SQL中农一个最重要，最强大的特性。"><span class="nav-number">1.8.1.0.0.1.</span> <span class="nav-text">多表查询产生笛卡尔积，必须使用WHERE子句过滤检索出想要的数据。联结查询是SQL中农一个最重要，最强大的特性。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八：连接查询"><span class="nav-number">1.9.</span> <span class="nav-text">八：连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-内连接"><span class="nav-number">1.9.0.1.</span> <span class="nav-text">1.内连接</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#FROM-lt-表一-gt-先确定主表，INNER-JOIN-lt-表二-gt-再确定需要连接的表，ON-lt-条件-gt-确定条件。-INNER-JOIN-连接只返回同时存在于两张表的行数据。"><span class="nav-number">1.9.0.1.0.1.</span> <span class="nav-text">FROM &lt;表一&gt;先确定主表，INNER JOIN &lt;表二&gt;再确定需要连接的表，ON &lt;条件&gt; 确定条件。 INNER JOIN 连接只返回同时存在于两张表的行数据。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-外连接"><span class="nav-number">1.9.0.2.</span> <span class="nav-text">2.外连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九：组合查询"><span class="nav-number">1.10.</span> <span class="nav-text">九：组合查询</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王恒</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+<!-- 新增访客统计代码 -->
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<!-- 新增访客统计代码 END-->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共23.5k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kJHnuI6UTmeaam41s13QmRrm-gzGzoHsz", "0hjNdXteouwI5rDyFUCLT4KT");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>
