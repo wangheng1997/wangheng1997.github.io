@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="文本处理函数   函数 说明     Left() 返回串左边的字符   Length() 返回串的长度   Locate() 找出串的一个子串   Lower() 将串转换为小写   LTrim() 去掉串左边的空格   Right() 返回串右边的字符   RTrim() 去掉串右边的空格   Soundex() 返回串的SOUNDEX值   SubString() 返回子串的字符   Upp">
+<meta name="description" content="1. 事务在执行SQL语句的时候，某些业务要求，一系列操作必须全部执行，而不能执行一部分。这种把多条语句作为一个整体进行操作的功能，称之为事务。数据库确保该事务范围内的所有操作都可以全部成功或失败。 数据库事务具有的四个特性：    特性 解释     原子性 将所有SQL作为原子单位执行，要么全部执行，要么不执行   一致性 事务完成后，所有数据的状态都是一样的   隔离性 如果有多个事务并发执">
 <meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql数据处理函数">
-<meta property="og:url" content="http://yoursite.com/2019/01/19/Mysql数据处理函数/index.html">
+<meta property="og:title" content="mysql之事务">
+<meta property="og:url" content="http://yoursite.com/2019/01/20/mysql之事务/index.html">
 <meta property="og:site_name" content="隔壁老王专属博客">
-<meta property="og:description" content="文本处理函数   函数 说明     Left() 返回串左边的字符   Length() 返回串的长度   Locate() 找出串的一个子串   Lower() 将串转换为小写   LTrim() 去掉串左边的空格   Right() 返回串右边的字符   RTrim() 去掉串右边的空格   Soundex() 返回串的SOUNDEX值   SubString() 返回子串的字符   Upp">
+<meta property="og:description" content="1. 事务在执行SQL语句的时候，某些业务要求，一系列操作必须全部执行，而不能执行一部分。这种把多条语句作为一个整体进行操作的功能，称之为事务。数据库确保该事务范围内的所有操作都可以全部成功或失败。 数据库事务具有的四个特性：    特性 解释     原子性 将所有SQL作为原子单位执行，要么全部执行，要么不执行   一致性 事务完成后，所有数据的状态都是一样的   隔离性 如果有多个事务并发执">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-19T09:01:05.879Z">
+<meta property="og:updated_time" content="2019-01-20T11:33:24.844Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql数据处理函数">
-<meta name="twitter:description" content="文本处理函数   函数 说明     Left() 返回串左边的字符   Length() 返回串的长度   Locate() 找出串的一个子串   Lower() 将串转换为小写   LTrim() 去掉串左边的空格   Right() 返回串右边的字符   RTrim() 去掉串右边的空格   Soundex() 返回串的SOUNDEX值   SubString() 返回子串的字符   Upp">
+<meta name="twitter:title" content="mysql之事务">
+<meta name="twitter:description" content="1. 事务在执行SQL语句的时候，某些业务要求，一系列操作必须全部执行，而不能执行一部分。这种把多条语句作为一个整体进行操作的功能，称之为事务。数据库确保该事务范围内的所有操作都可以全部成功或失败。 数据库事务具有的四个特性：    特性 解释     原子性 将所有SQL作为原子单位执行，要么全部执行，要么不执行   一致性 事务完成后，所有数据的状态都是一样的   隔离性 如果有多个事务并发执">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/19/Mysql数据处理函数/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/20/mysql之事务/">
 
 
 
 
 
-  <title>Mysql数据处理函数 | 隔壁老王专属博客</title>
+  <title>mysql之事务 | 隔壁老王专属博客</title>
   
 
 
@@ -257,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/19/Mysql数据处理函数/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/20/mysql之事务/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王恒">
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mysql数据处理函数</h1>
+          <h1 class="post-title" itemprop="name headline">mysql之事务</h1>
         
 
         <div class="post-meta">
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-19T16:49:49+08:00">
-                2019-01-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-20T19:32:30+08:00">
+                2019-01-20
               </time>
             
 
@@ -304,7 +304,7 @@
 
           
           
-             <span id="/2019/01/19/Mysql数据处理函数/" class="leancloud_visitors" data-flag-title="Mysql数据处理函数">
+             <span id="/2019/01/20/mysql之事务/" class="leancloud_visitors" data-flag-title="mysql之事务">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -329,7 +329,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  385
+                  649
                 </span>
               
 
@@ -345,7 +345,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -366,180 +366,76 @@
       
 
       
-        <h2 id="文本处理函数"><a href="#文本处理函数" class="headerlink" title="文本处理函数"></a>文本处理函数</h2><table>
+        <h1 id="1-事务"><a href="#1-事务" class="headerlink" title="1. 事务"></a>1. 事务</h1><p>在执行SQL语句的时候，某些业务要求，一系列操作必须全部执行，而不能执行一部分。这种把多条语句作为一个整体进行操作的功能，称之为事务。数据库确保该事务范围内的所有操作都可以全部成功或失败。</p>
+<p>数据库事务具有的四个特性：</p>
+<table>
 <thead>
 <tr>
-<th>函数</th>
-<th>说明</th>
+<th>特性</th>
+<th>解释</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Left()</td>
-<td>返回串左边的字符</td>
+<td>原子性</td>
+<td>将所有SQL作为原子单位执行，要么全部执行，要么不执行</td>
 </tr>
 <tr>
-<td>Length()</td>
-<td>返回串的长度</td>
+<td>一致性</td>
+<td>事务完成后，所有数据的状态都是一样的</td>
 </tr>
 <tr>
-<td>Locate()</td>
-<td>找出串的一个子串</td>
+<td>隔离性</td>
+<td>如果有多个事务并发执行，每个事务作出的修改必须与其他事务隔离</td>
 </tr>
 <tr>
-<td>Lower()</td>
-<td>将串转换为小写</td>
-</tr>
-<tr>
-<td>LTrim()</td>
-<td>去掉串左边的空格</td>
-</tr>
-<tr>
-<td>Right()</td>
-<td>返回串右边的字符</td>
-</tr>
-<tr>
-<td>RTrim()</td>
-<td>去掉串右边的空格</td>
-</tr>
-<tr>
-<td>Soundex()</td>
-<td>返回串的SOUNDEX值</td>
-</tr>
-<tr>
-<td>SubString()</td>
-<td>返回子串的字符</td>
-</tr>
-<tr>
-<td>Upper()</td>
-<td>将串转换为大写</td>
+<td>持久性</td>
+<td>数据修改后，对数据库的修改被持久化存储。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="日期和时间处理函数"><a href="#日期和时间处理函数" class="headerlink" title="日期和时间处理函数"></a>日期和时间处理函数</h2><table>
+<h2 id="1-1-事务的隔离级别"><a href="#1-1-事务的隔离级别" class="headerlink" title="1.1 事务的隔离级别"></a>1.1 事务的隔离级别</h2><table>
 <thead>
 <tr>
-<th>函数</th>
-<th>说明</th>
+<th>事务隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>AddDate()</td>
-<td>添加一个日期（天、周）</td>
+<td>读未提交(read-uncommitted)</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
 </tr>
 <tr>
-<td>AddTime()</td>
-<td>添加一个时间（时。分）</td>
+<td>不可重复读（read-committed）</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
 </tr>
 <tr>
-<td>CurDate()</td>
-<td>返回当前日期</td>
+<td>可重复读（repeatable-read）</td>
+<td>否</td>
+<td>否</td>
+<td>是</td>
 </tr>
 <tr>
-<td>CurTime()</td>
-<td>返回当前时间</td>
-</tr>
-<tr>
-<td>Date()</td>
-<td>返回日期时间的日期部分</td>
-</tr>
-<tr>
-<td>DateDiff()</td>
-<td>计算两个日期之差</td>
-</tr>
-<tr>
-<td>Date_Add()</td>
-<td>高度灵活的日期计算函数</td>
-</tr>
-<tr>
-<td>Date_Format</td>
-<td>返回一个格式化的日期或字符串</td>
-</tr>
-<tr>
-<td>Day()</td>
-<td>返回一个日期的天数部分</td>
-</tr>
-<tr>
-<td>DayOfWeek()</td>
-<td>对于一个日期返回相应的星期几</td>
-</tr>
-<tr>
-<td>Hour()</td>
-<td>返回一个时间的小时部分</td>
-</tr>
-<tr>
-<td>Minute()</td>
-<td>返回一个时间的分钟部分</td>
-</tr>
-<tr>
-<td>Month()</td>
-<td>返回一个时间的月份部分</td>
-</tr>
-<tr>
-<td>Now()</td>
-<td>返回当前日期</td>
-</tr>
-<tr>
-<td>Second()</td>
-<td>返回一个时间的秒部分</td>
-</tr>
-<tr>
-<td>Time()</td>
-<td>返回一个日期时间的时间部分</td>
-</tr>
-<tr>
-<td>Year()</td>
-<td>返回一个日期的年份部分</td>
+<td>串行化（serializable）</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
 </tr>
 </tbody>
 </table>
-<h2 id="数值处理函数"><a href="#数值处理函数" class="headerlink" title="数值处理函数"></a>数值处理函数</h2><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Abs()</td>
-<td>返回一个数的绝对值</td>
-</tr>
-<tr>
-<td>Cos()</td>
-<td>返回一个角度的余弦</td>
-</tr>
-<tr>
-<td>Exp()</td>
-<td>返回一个数的指数值</td>
-</tr>
-<tr>
-<td>Mod()</td>
-<td>返回除操作的余数</td>
-</tr>
-<tr>
-<td>Pi()</td>
-<td>返回圆周率</td>
-</tr>
-<tr>
-<td>Rand()</td>
-<td>返回一个随机数</td>
-</tr>
-<tr>
-<td>Sin()</td>
-<td>返回一个角度的正弦</td>
-</tr>
-<tr>
-<td>Sqrt()</td>
-<td>返回一个数的平方根</td>
-</tr>
-<tr>
-<td>Tan()</td>
-<td>返回一个数的正切</td>
-</tr>
-</tbody>
-</table>
+<h4 id="脏读："><a href="#脏读：" class="headerlink" title="脏读："></a>脏读：</h4><p>Read Uncommitted是隔离级别最低的一种事务级别。在这种隔离级别下，<strong>一个事务会读到另一个事务更新后但未提交的数据</strong>，如果另一个事务回滚，那么当前事务读到的数据就是脏数据，这就是脏读（Dirty Read）。</p>
+<h4 id="不可重复读："><a href="#不可重复读：" class="headerlink" title="不可重复读："></a>不可重复读：</h4><p>在一个事务内，多次读同一数据，在这个事务还没有结束时，如果另一个事务(<strong>已提交的事务</strong>)恰好修改了这个数据，那么，在第一个事务中，两次读取的数据就可能不一致。</p>
+<h4 id="幻读："><a href="#幻读：" class="headerlink" title="幻读："></a>幻读：</h4><p>在一个事务中，第一次查询某条记录，发现没有，但是，当试图更新这条不存在的记录时(<strong>其他事务插入，使其更新成功</strong>)，竟然能成功，并且，再次读取同一条记录，它就神奇地出现了。</p>
+<h4 id="串行化："><a href="#串行化：" class="headerlink" title="串行化："></a>串行化：</h4><p>Serializable是最严格的隔离级别。在Serializable隔离级别下，所有事务按照次序依次执行，因此，脏读、不可重复读、幻读都不会出现。</p>
+<p>虽然Serializable隔离级别下的事务具有最高的安全性，但是，由于事务是串行执行，所以效率会大大下降，应用程序的性能会急剧降低。如果没有特别重要的情景，一般都不会使用Serializable隔离级别。</p>
+<h2 id="默认隔离级别"><a href="#默认隔离级别" class="headerlink" title="默认隔离级别"></a>默认隔离级别</h2><p>一般会使用默认隔离级别，如果是mysql，默认使用innoDB引擎，默认隔离级别为可重复读。</p>
 
       
     </div>
@@ -585,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/19/Mysql之检索数据/" rel="next" title="Mysql之检索数据">
-                <i class="fa fa-chevron-left"></i> Mysql之检索数据
+              <a href="/2019/01/19/Mysql数据处理函数/" rel="next" title="Mysql数据处理函数">
+                <i class="fa fa-chevron-left"></i> Mysql数据处理函数
               </a>
             
           </div>
@@ -594,10 +490,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/20/mysql之事务/" rel="prev" title="mysql之事务">
-                mysql之事务 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -727,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文本处理函数"><span class="nav-number">1.</span> <span class="nav-text">文本处理函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日期和时间处理函数"><span class="nav-number">2.</span> <span class="nav-text">日期和时间处理函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值处理函数"><span class="nav-number">3.</span> <span class="nav-text">数值处理函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-事务"><span class="nav-number">1.</span> <span class="nav-text">1. 事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-事务的隔离级别"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 事务的隔离级别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#脏读："><span class="nav-number">1.1.0.1.</span> <span class="nav-text">脏读：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不可重复读："><span class="nav-number">1.1.0.2.</span> <span class="nav-text">不可重复读：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#幻读："><span class="nav-number">1.1.0.3.</span> <span class="nav-text">幻读：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#串行化："><span class="nav-number">1.1.0.4.</span> <span class="nav-text">串行化：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#默认隔离级别"><span class="nav-number">1.2.</span> <span class="nav-text">默认隔离级别</span></a></li></ol></div>
             
 
           </div>
